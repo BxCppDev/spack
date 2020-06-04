@@ -69,7 +69,7 @@ class Perl(Package):  # Perl doesn't use Autotools, it should subclass Package
     # people/projects to install their own sets of perl modules.  Not
     # having it in core increases the "energy of activation" for doing
     # things cleanly.
-    variant('cpanm', default=False,
+    variant('cpanm', default=True,
             description='Optionally install cpanm with the core packages.')
 
     variant('shared', default=True,
