@@ -11,6 +11,6 @@
 #   ~/.spack/repos.yaml
 # -------------------------------------------------------------------------
 repos:
-  - $spack/var/spack/repos/builtin
   - $spack/var/spack/repos/bxcppdev
+  - $spack/var/spack/repos/builtin
   
