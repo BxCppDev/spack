@@ -66,6 +66,8 @@ class Geant4(CMakePackage):
         # CLHEP version requirements to be reviewed
         depends_on('clhep@2.3.3.0: cxxstd=' + std,
                    when='@10.3.3: cxxstd=' + std)
+        depends_on('clhep@2.1.4.0: cxxstd=' + std,
+                   when='@9.6.4 cxxstd=' + std)
 
         # Spack only supports Xerces-c 3 and above, so no version req
         depends_on('xerces-c cxxstd=' + std, when='cxxstd=' + std)
@@ -117,8 +119,9 @@ class Geant4(CMakePackage):
         ]
 
         # Multithreading
-        options.append(self.define_from_variant('GEANT4_BUILD_MULTITHREADED',
-                                                'threads'))
+        if spec.version > Version('9'):
+            options.append(self.define_from_variant('GEANT4_BUILD_MULTITHREADED',
+                                                    'threads'))
         if '+threads' in spec:
             # Locked at global-dynamic to allow use cases that load the
             # geant4 libs at application runtime
