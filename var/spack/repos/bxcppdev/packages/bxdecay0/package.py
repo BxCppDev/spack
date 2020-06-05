@@ -23,7 +23,9 @@
 from spack import *
 
 class Bxdecay0(CMakePackage):
-    """C++ port of the legacy Decay0 FORTRAN library and extensions."""
+    """ C++ port and extension of the Decay0/GENBB fortran Monte Carlo code for the
+        generation of standard decay or double beta decay processes for
+        various radioactive nuclides of interest. """
 
     homepage = "https://github.com/BxCppDev/bxdecay0"
     url      = "https://github.com/BxCppDev/bxdecay0/archive/1.0.1.tar.gz"
@@ -35,13 +37,16 @@ class Bxdecay0(CMakePackage):
     version('develop', git='https://github.com/BxCppDev/bxdecay0.git', branch='develop')
 
     depends_on('gsl@2.4')
-    depends_on('cmake', type='build')
+
+    # From https://github.com/SuperNEMO-DBD/spack/blob/snemo-develop/var/spack/repos/supernemo/packages/bxdecay0/package.py
+    variant('cxxstd',
+            default='11',
+            values=('11', '14', '17'),
+            multi=False,
+            description='Use the specified C++ standard when building.')
 
     def cmake_args(self):
-        # FIXME: Add arguments other than
-        # FIXME: CMAKE_INSTALL_PREFIX and CMAKE_BUILD_TYPE
-        # FIXME: If not needed delete this function
-        args = []
+        args = ['-DCMAKE_CXX_STANDARD={0}'.format(self.spec.variants['cxxstd'].value)]
         return args
 
 # ----------------------------------------------------------------------------
