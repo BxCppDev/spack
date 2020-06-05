@@ -34,7 +34,7 @@ class Camp(CMakePackage):
 
     version('0.8.4', sha256='4063f29c63ed0505f4045b0c8855c48c31233f392a441441c17a08579fc69c73')
 
-    depends_on('boost@1.71.0 +python')
+    depends_on('boost@1.69.0 +python')
 
     # def cmake_args(self):
     #     # Arguments other than CMAKE_INSTALL_PREFIX and CMAKE_BUILD_TYPE
