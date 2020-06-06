@@ -103,6 +103,13 @@ class Geant4(CMakePackage):
     patch('geant4-10.4.3-cxx17-removed-features.patch',
           level=1, when='@10.4.3 cxxstd=17')
 
+    def url_for_version(self, version):
+        """Handle version string."""
+        url="https://gitlab.cern.ch/geant4/geant4/-/archive/v%s/geant4-v%s.tar.gz" % (version, version)
+        if url == '9.6.4' :
+            url='http://geant4.cern.ch/support/source/geant4.9.6.p04.tar.gz'
+        return (url)
+
     def cmake_args(self):
         spec = self.spec
 
