@@ -24,7 +24,7 @@ class Geant4(CMakePackage):
     version('10.4.3', sha256='67f3bb6405a2c77e573936c2b933f5a4a33915aa379626a2eb3012009b91e1da')
     version('10.4.0', sha256='e919b9b0a88476e00c0b18ab65d40e6a714b55ee4778f66bac32a5396c22aa74')
     version('10.3.3', sha256='bcd36a453da44de9368d1d61b0144031a58e4b43a6d2d875e19085f2700a89d8')
-    version('9.6.4',  sha256='6a23f3c4cceb0f17d712c66b83f8764011248ed6fe23406b7a5aaca648c75242')
+    version('9.6.4',  sha256='997220a5386a43ac8f533fc7d5a8360aa1fd6338244d17deeaa583fb3a0f39fd')
 
     _cxxstd_values = ('11', '14', '17')
     variant('cxxstd',
@@ -108,8 +108,8 @@ class Geant4(CMakePackage):
     def url_for_version(self, version):
         """Handle version string."""
         url="https://gitlab.cern.ch/geant4/geant4/-/archive/v%s/geant4-v%s.tar.gz" % (version, version)
-        # if url == '9.6.4' :
-        #     url='http://geant4.cern.ch/support/source/geant4.9.6.p04.tar.gz'
+        if version == '9.6.4' :
+            url='http://geant4.cern.ch/support/source/geant4.9.6.p04.tar.gz'
         return (url)
 
     def cmake_args(self):
@@ -138,11 +138,12 @@ class Geant4(CMakePackage):
         if spec.satisfies('@10:'):
             options.append(self.define_from_variant('GEANT4_BUILD_MULTITHREADED',
                                                     'threads'))
-        if '+threads' in spec:
-            # Locked at global-dynamic to allow use cases that load the
-            # geant4 libs at application runtime
-            options.append('-DGEANT4_BUILD_TLS_MODEL=global-dynamic')
-
+            if '+threads' in spec and :
+                # Locked at global-dynamic to allow use cases that load the
+                # geant4 libs at application runtime
+                options.append('-DGEANT4_BUILD_TLS_MODEL=global-dynamic')
+        
+            
         # install the data with geant4
         datadir = spec['geant4-data'].prefix.share
         dataver = '{0}-{1}'.format(spec['geant4-data'].name,
