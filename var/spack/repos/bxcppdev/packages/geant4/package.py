@@ -41,7 +41,7 @@ class Geant4(CMakePackage):
     variant('motif', default=False, description='Optional motif support')
     variant('qt', default=False, description='Enable Qt support')
     variant('python', default=False, description='Enable Python bindings')
-    variant('g3tog4', default=True)
+    variant('g3tog4', default=False)
 
     depends_on('cmake@2.6.4:', type='build', when='@9.6.4')
     depends_on('cmake@3.5:', type='build')
