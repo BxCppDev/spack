@@ -121,7 +121,6 @@ class Geant4(CMakePackage):
                 self.spec.variants['cxxstd'].value),
             '-DGEANT4_USE_SYSTEM_CLHEP=ON',
             '-DGEANT4_USE_SYSTEM_EXPAT=ON',
-            '-DGEANT4_USE_SYSTEM_ZLIB=ON',
             '-DGEANT4_USE_GDML=ON',
             '-DXERCESC_ROOT_DIR={0}'.format(spec['xerces-c'].prefix)
         ]
@@ -133,7 +132,12 @@ class Geant4(CMakePackage):
             
         if spec.satisfies('@9.6.4') and "+opengl" in spec:
             options.append('-DOpenGL_GL_PREFERENCE=GLVND')
-            
+
+        if spec.satisfies('@9.6.4'):
+            options.append('-DGEANT4_USE_SYSTEM_ZLIB=OFF')
+        else:
+            options.append('-DGEANT4_USE_SYSTEM_ZLIB=ON')
+    
         # Multithreading
         if spec.satisfies('@10:'):
             options.append(self.define_from_variant('GEANT4_BUILD_MULTITHREADED',
