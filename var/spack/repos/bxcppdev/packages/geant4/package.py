@@ -33,13 +33,15 @@ class Geant4(CMakePackage):
             multi=False,
             description='Use the specified C++ standard when building.')
 
-    variant('threads', default=True, description='Build with multithreading')
+    variant('threads', default=True, description='Build with multithreading (10 or later)')
+     
     variant('vecgeom', default=False, description='Enable vecgeom support')
     variant('opengl', default=False, description='Optional OpenGL support')
     variant('x11', default=False, description='Optional X11 support')
     variant('motif', default=False, description='Optional motif support')
     variant('qt', default=False, description='Enable Qt support')
     variant('python', default=False, description='Enable Python bindings')
+    variant('g3tog4', default=True)
 
     depends_on('cmake@2.6.4:', type='build', when='@9.6.4')
     depends_on('cmake@3.5:', type='build')
@@ -52,7 +54,7 @@ class Geant4(CMakePackage):
     depends_on('geant4-data@10.4.3', when='@10.4.3')
     depends_on('geant4-data@10.4.0', when='@10.4.0')
     depends_on('geant4-data@10.3.3', when='@10.3.3')
-    depends_on('geant4-data@9.6.4', when='@9.6.4')
+    depends_on('geant4-data@9.6.4',  when='@9.6.4')
 
     depends_on("expat")
     depends_on("zlib")
@@ -66,7 +68,7 @@ class Geant4(CMakePackage):
         # CLHEP version requirements to be reviewed
         depends_on('clhep@2.3.3.0: cxxstd=' + std,
                    when='@10.3.3: cxxstd=' + std)
-        depends_on('clhep@2.1.4.0: cxxstd=' + std,
+        depends_on('clhep@2.1.3: cxxstd=' + std,
                    when='@9.6.4 cxxstd=' + std)
 
         # Spack only supports Xerces-c 3 and above, so no version req
@@ -120,13 +122,20 @@ class Geant4(CMakePackage):
             '-DGEANT4_USE_SYSTEM_CLHEP=ON',
             '-DGEANT4_USE_SYSTEM_EXPAT=ON',
             '-DGEANT4_USE_SYSTEM_ZLIB=ON',
-            '-DGEANT4_USE_G3TOG4=ON',
             '-DGEANT4_USE_GDML=ON',
             '-DXERCESC_ROOT_DIR={0}'.format(spec['xerces-c'].prefix)
         ]
 
+        if "+g3tog4" in spec:
+            options.append('-DGEANT4_USE_G3TOG4=ON')
+        else:
+            options.append('-DGEANT4_USE_G3TOG4=OFF')
+            
+        if spec.satisfies('@9.6.4') and "+opengl" in spec:
+            options.append('-DOpenGL_GL_PREFERENCE=GLVND')
+            
         # Multithreading
-        if spec.version > Version('9'):
+        if spec.satisfies('@10:'):
             options.append(self.define_from_variant('GEANT4_BUILD_MULTITHREADED',
                                                     'threads'))
         if '+threads' in spec:
