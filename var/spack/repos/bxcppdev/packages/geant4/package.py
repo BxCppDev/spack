@@ -68,7 +68,7 @@ class Geant4(CMakePackage):
         # CLHEP version requirements to be reviewed
         depends_on('clhep@2.3.3.0: cxxstd=' + std,
                    when='@10.3.3: cxxstd=' + std)
-        depends_on('clhep@2.1.3: cxxstd=' + std,
+        depends_on('clhep@2.1.3.1 cxxstd=' + std,
                    when='@9.6.4 cxxstd=' + std)
 
         # Spack only supports Xerces-c 3 and above, so no version req
@@ -104,6 +104,8 @@ class Geant4(CMakePackage):
     patch('cxx17_geant4_10_0.patch', level=1, when='@10.4.0 cxxstd=17')
     patch('geant4-10.4.3-cxx17-removed-features.patch',
           level=1, when='@10.4.3 cxxstd=17')
+    patch('geant4-9.6.4-1.patch', level=1, when='@9.6.4')
+    patch('geant4-9.6.4-2.patch', level=1, when='@9.6.4')
 
     def url_for_version(self, version):
         """Handle version string."""
