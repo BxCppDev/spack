@@ -138,7 +138,7 @@ class Geant4(CMakePackage):
         if spec.satisfies('@10:'):
             options.append(self.define_from_variant('GEANT4_BUILD_MULTITHREADED',
                                                     'threads'))
-            if '+threads' in spec and :
+            if '+threads' in spec :
                 # Locked at global-dynamic to allow use cases that load the
                 # geant4 libs at application runtime
                 options.append('-DGEANT4_BUILD_TLS_MODEL=global-dynamic')
