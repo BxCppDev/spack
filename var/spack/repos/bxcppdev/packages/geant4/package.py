@@ -134,7 +134,7 @@ class Geant4(CMakePackage):
             options.append('-DOpenGL_GL_PREFERENCE=GLVND')
 
         if spec.satisfies('@9.6.4'):
-            options.append('-DCLHEP_ROOT_DIR={0}'.format(spec['clhep'].prefix)
+            options.append('-DCLHEP_ROOT_DIR={0}'.format(spec['clhep'].prefix))
 
         if spec.satisfies('@9.6.4'):
             options.append('-DGEANT4_USE_SYSTEM_ZLIB=OFF')
