@@ -1,5 +1,12 @@
-293c293,294
-<        std::cerr << "GHADException originating from components of G4LElastic"<<std::cout;
----
->        //FIX std::cerr << "GHADException originating from components of G4LElastic"<<std::cout;
->        std::cerr << "GHADException originating from components of G4LElastic"<<std::endl;
+--- source/processes/hadronic/models/low_energy/src/G4LElastic.cc	2020-06-08 01:24:49.366578155 +0200
++++ source/processes/hadronic/models/low_energy/src/G4LElastic.cc	2020-06-08 01:21:04.377724621 +0200
+@@ -290,7 +290,8 @@
+      }
+      catch(G4HadronicException)
+      {
+-       std::cerr << "GHADException originating from components of G4LElastic"<<std::cout;
++       //FIX std::cerr << "GHADException originating from components of G4LElastic"<<std::cout;
++       std::cerr << "GHADException originating from components of G4LElastic"<<std::endl;
+        throw;
+      }
+      G4ParticleDefinition * theDef = G4ParticleTable::GetParticleTable()->FindIon(Z,A,0,Z);

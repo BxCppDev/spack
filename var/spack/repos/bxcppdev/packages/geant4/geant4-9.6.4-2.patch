@@ -1,1240 +1,1934 @@
-103,104c103,104
-< 	     << "         Cannot do the operator +"
-< 	     << G4endl;
----
->              << "         Cannot do the operator +"
->              << G4endl;
-144,145c144,145
-< 	     << "         Cannot do the operator +="
-< 	     << G4endl;
----
->              << "         Cannot do the operator +="
->              << G4endl;
-255c255
-< 			   float _endx, float _endy, float _endz) {
----
->                            float _endx, float _endy, float _endz) {
-266,267c266,267
-< 			   float & _endx, float & _endy, float & _endz,
-< 			   int _num) {
----
->                            float & _endx, float & _endy, float & _endz,
->                            int _num) {
-271c271
-< 	     << "invalid step # : " << _num << G4endl;
----
->              << "invalid step # : " << _num << G4endl;
-306c306
-< 			      float _endx, float _endy, float _endz) {
----
->                               float _endx, float _endy, float _endz) {
-317,318c317,318
-< 			   float & _endx, float & _endy, float & _endz,
-< 			   int _num) {
----
->                            float & _endx, float & _endy, float & _endz,
->                            int _num) {
-322c322
-< 	     << "invalid edge # : " << _num << G4endl;
----
->              << "invalid edge # : " << _num << G4endl;
-472,474c472,476
-< 		      std::ios_base::out|std::ios_base::binary);
-<   if(DEBUG || kVerbose > 0)
-<     G4cout << "         file open status: " << ofile << G4endl;
----
->                       std::ios_base::out|std::ios_base::binary);
->   // FIX
->   // if(DEBUG || kVerbose > 0)
->   //   G4cout << "         file open status: " << ofile << G4endl;
->   
-517c519
-< 	      << kComment << G4endl;
----
->               << kComment << G4endl;
-530,533c532,535
-< 	      << kVoxelSpacing[0] << ", "
-< 	      << kVoxelSpacing[1] << ", "
-< 	      << kVoxelSpacing[2]
-< 	      << ") mm " << G4endl;
----
->               << kVoxelSpacing[0] << ", "
->               << kVoxelSpacing[1] << ", "
->               << kVoxelSpacing[2]
->               << ") mm " << G4endl;
-595c597
-< 	      << kPointerToModalityData << ", ";
----
->               << kPointerToModalityData << ", ";
-600,602c602,604
-< 	      << kPointerToTrackData << ", "
-< 	      << kPointerToDetectorData
-< 	      << G4endl;
----
->               << kPointerToTrackData << ", "
->               << kPointerToDetectorData
->               << G4endl;
-625,628c627,630
-< 	      << size[0] << ", "
-< 	      << size[1] << ", "
-< 	      << size[2] << ")"
-< 	      << G4endl;
----
->               << size[0] << ", "
->               << size[1] << ", "
->               << size[2] << ")"
->               << G4endl;
-655,657c657,659
-< 	      << minmax[0] << ", "
-< 	      << minmax[1] << ", "
-< 	      << scale << G4endl;
----
->               << minmax[0] << ", "
->               << minmax[1] << ", "
->               << scale << G4endl;
-669,670c671,672
-< 	invertByteOrder((char *)&image[j], stmp[0]);
-< 	ofile.write((char *)stmp, 2);
----
->         invertByteOrder((char *)&image[j], stmp[0]);
->         ofile.write((char *)stmp, 2);
-713c715
-< 	ofile.write((char *)size, 3*sizeof(int));
----
->         ofile.write((char *)size, 3*sizeof(int));
-715,717c717,719
-< 	for(int j = 0; j < 3; j++)
-< 	  invertByteOrder((char *)&size[j], itmp[j]);
-< 	ofile.write((char *)itmp, 12);
----
->         for(int j = 0; j < 3; j++)
->           invertByteOrder((char *)&size[j], itmp[j]);
->         ofile.write((char *)itmp, 12);
-720,724c722,726
-< 	G4cout << "Dose dist. [" << ndose << "] image size : ("
-< 		  << size[0] << ", "
-< 		  << size[1] << ", "
-< 		  << size[2] << ")"
-< 		  << G4endl;
----
->         G4cout << "Dose dist. [" << ndose << "] image size : ("
->                   << size[0] << ", "
->                   << size[1] << ", "
->                   << size[2] << ")"
->                   << G4endl;
-730c732
-< 	ofile.write((char *)minmax, 2*2); // sizeof(shorft)*2
----
->         ofile.write((char *)minmax, 2*2); // sizeof(shorft)*2
-732,734c734,736
-< 	for(int j = 0; j < 2; j++)
-< 	  invertByteOrder((char *)&minmax[j], stmp[j]);
-< 	ofile.write((char *)stmp, 4);
----
->         for(int j = 0; j < 2; j++)
->           invertByteOrder((char *)&minmax[j], stmp[j]);
->         ofile.write((char *)stmp, 4);
-746c748
-< 	G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
----
->         G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
-754c756
-< 	ofile.write((char *)&scale, 4);
----
->         ofile.write((char *)&scale, 4);
-756,757c758,759
-< 	invertByteOrder((char *)&scale, ftmp[0]);
-< 	ofile.write((char *)ftmp, 4);
----
->         invertByteOrder((char *)&scale, ftmp[0]);
->         ofile.write((char *)ftmp, 4);
-760,764c762,766
-< 	G4cout << "Dose dist. [" << ndose
-< 		  << "] image min., max., scale : "
-< 		  << minmax[0] << ", "
-< 		  << minmax[1] << ", "
-< 		  << scale << G4endl;
----
->         G4cout << "Dose dist. [" << ndose
->                   << "] image min., max., scale : "
->                   << minmax[0] << ", "
->                   << minmax[1] << ", "
->                   << scale << G4endl;
-771,787c773,789
-< 	getShortDoseDist(dimage, z, ndose);
-< 	if(kLittleEndianOutput) {
-< 	  ofile.write((char *)dimage, dsize*2); //sizeof(short)
-< 	} else {
-< 	  for(int j = 0; j < dsize; j++) {
-< 	    invertByteOrder((char *)&dimage[j], stmp[0]);
-< 	    ofile.write((char *)stmp, 2);
-< 	  }
-< 	}
-< 
-< 	if(DEBUG || kVerbose > 0) {
-< 	  for(int j = 0; j < dsize; j++) {
-< 	    if(dimage[j] < 0)
-< 	      G4cout << "[" << j << "," << z << "]"
-< 			<< dimage[j] << ", ";
-< 	  }
-< 	}
----
->         getShortDoseDist(dimage, z, ndose);
->         if(kLittleEndianOutput) {
->           ofile.write((char *)dimage, dsize*2); //sizeof(short)
->         } else {
->           for(int j = 0; j < dsize; j++) {
->             invertByteOrder((char *)&dimage[j], stmp[0]);
->             ofile.write((char *)stmp, 2);
->           }
->         }
-> 
->         if(DEBUG || kVerbose > 0) {
->           for(int j = 0; j < dsize; j++) {
->             if(dimage[j] < 0)
->               G4cout << "[" << j << "," << z << "]"
->                         << dimage[j] << ", ";
->           }
->         }
-797c799
-< 	ofile.write((char *)iCenter, 3*4); // 3*sizeof(int)
----
->         ofile.write((char *)iCenter, 3*4); // 3*sizeof(int)
-799,801c801,803
-< 	for(int j = 0; j < 3; j++)
-< 	  invertByteOrder((char *)&iCenter[j], itmp[j]);
-< 	ofile.write((char *)itmp, 12);
----
->         for(int j = 0; j < 3; j++)
->           invertByteOrder((char *)&iCenter[j], itmp[j]);
->         ofile.write((char *)itmp, 12);
-804,808c806,810
-< 	G4cout << "Dose dist. [" << ndose
-< 		  << "]image relative location : ("
-< 		  << iCenter[0] << ", "
-< 		  << iCenter[1] << ", "
-< 		  << iCenter[2] << ")" << G4endl;
----
->         G4cout << "Dose dist. [" << ndose
->                   << "]image relative location : ("
->                   << iCenter[0] << ", "
->                   << iCenter[1] << ", "
->                   << iCenter[2] << ")" << G4endl;
-817c819
-< 	G4cout << "Dose dist. name : " << name << G4endl;
----
->         G4cout << "Dose dist. name : " << name << G4endl;
-831c833
-< 	invertByteOrder((char *)&size[j], itmp[j]);
----
->         invertByteOrder((char *)&size[j], itmp[j]);
-836,839c838,841
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-848c850
-< 	invertByteOrder((char *)&minmax[j], stmp[j]);
----
->         invertByteOrder((char *)&minmax[j], stmp[j]);
-862,864c864,866
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-872c874
-< 	ofile.write((char *)rimage, rsize*sizeof(short));
----
->         ofile.write((char *)rimage, rsize*sizeof(short));
-874,877c876,879
-< 	for(int j = 0; j < rsize; j++) {
-< 	  invertByteOrder((char *)&rimage[j], stmp[0]);
-< 	  ofile.write((char *)stmp, 2);
-< 	}
----
->         for(int j = 0; j < rsize; j++) {
->           invertByteOrder((char *)&rimage[j], stmp[0]);
->           ofile.write((char *)stmp, 2);
->         }
-889c891
-< 	invertByteOrder((char *)&iCenter[j], itmp[j]);
----
->         invertByteOrder((char *)&iCenter[j], itmp[j]);
-894,896c896,898
-< 		<< iCenter[0] << ", "
-< 		<< iCenter[1] << ", "
-< 		<< iCenter[2] << ")" << G4endl;
----
->                 << iCenter[0] << ", "
->                 << iCenter[1] << ", "
->                 << iCenter[2] << ")" << G4endl;
-913c915
-< 		<< ntrk << G4endl;
----
->                 << ntrk << G4endl;
-921c923
-< 	ofile.write((char *)&nsteps, sizeof(int));
----
->         ofile.write((char *)&nsteps, sizeof(int));
-923,924c925,926
-< 	invertByteOrder((char *)&nsteps, itmp[0]);
-< 	ofile.write((char *)itmp, 4);
----
->         invertByteOrder((char *)&nsteps, itmp[0]);
->         ofile.write((char *)itmp, 4);
-927c929
-< 	G4cout << "# of steps : " << nsteps << G4endl;
----
->         G4cout << "# of steps : " << nsteps << G4endl;
-938,948c940,950
-< 	kTracks[nt].getStep(stepPoints[0], stepPoints[1], stepPoints[2],
-< 			    stepPoints[3], stepPoints[4], stepPoints[5],
-< 			    isteps);
-< 
-< 	if(kLittleEndianOutput) {
-< 	  ofile.write((char *)stepPoints, sizeof(float)*6);
-< 	} else {
-< 	  for(int j = 0; j < 6; j++)
-< 	    invertByteOrder((char *)&stepPoints[j], ftmp[j]);
-< 	  ofile.write((char *)ftmp, 24);
-< 	}
----
->         kTracks[nt].getStep(stepPoints[0], stepPoints[1], stepPoints[2],
->                             stepPoints[3], stepPoints[4], stepPoints[5],
->                             isteps);
-> 
->         if(kLittleEndianOutput) {
->           ofile.write((char *)stepPoints, sizeof(float)*6);
->         } else {
->           for(int j = 0; j < 6; j++)
->             invertByteOrder((char *)&stepPoints[j], ftmp[j]);
->           ofile.write((char *)ftmp, 24);
->         }
-965c967
-< 		<< ndet << G4endl;
----
->                 << ndet << G4endl;
-973c975
-< 	ofile.write((char *)&nedges, sizeof(int));
----
->         ofile.write((char *)&nedges, sizeof(int));
-975,976c977,978
-< 	invertByteOrder((char *)&nedges, itmp[0]);
-< 	ofile.write((char *)itmp, 4);
----
->         invertByteOrder((char *)&nedges, itmp[0]);
->         ofile.write((char *)itmp, 4);
-979c981
-< 	G4cout << "# of edges in a detector : " << nedges << G4endl;
----
->         G4cout << "# of edges in a detector : " << nedges << G4endl;
-985,1006c987,1008
-< 	kDetectors[nd].getEdge(edgePoints[0], edgePoints[1], edgePoints[2],
-< 			       edgePoints[3], edgePoints[4], edgePoints[5],
-< 			       ne);
-< 
-< 	if(kLittleEndianOutput) {
-< 	  ofile.write((char *)edgePoints, sizeof(float)*6);
-< 	} else {
-< 	  for(int j = 0; j < 6; j++)
-< 	    invertByteOrder((char *)&edgePoints[j], ftmp[j]);
-< 	  ofile.write((char *)ftmp, 24);
-< 	}
-< 
-< 	if(DEBUG || kVerbose > 0) {
-< 	  if(ne < 1) {
-< 	    G4cout << " edge : (" << edgePoints[0] << ", "
-< 		      << edgePoints[1] << ", "
-< 		      << edgePoints[2] << ") - ("
-< 		      << edgePoints[3] << ", "
-< 		      << edgePoints[4] << ", "
-< 		      << edgePoints[5] << ")" << G4endl;
-< 	  }
-< 	}
----
->         kDetectors[nd].getEdge(edgePoints[0], edgePoints[1], edgePoints[2],
->                                edgePoints[3], edgePoints[4], edgePoints[5],
->                                ne);
-> 
->         if(kLittleEndianOutput) {
->           ofile.write((char *)edgePoints, sizeof(float)*6);
->         } else {
->           for(int j = 0; j < 6; j++)
->             invertByteOrder((char *)&edgePoints[j], ftmp[j]);
->           ofile.write((char *)ftmp, 24);
->         }
-> 
->         if(DEBUG || kVerbose > 0) {
->           if(ne < 1) {
->             G4cout << " edge : (" << edgePoints[0] << ", "
->                       << edgePoints[1] << ", "
->                       << edgePoints[2] << ") - ("
->                       << edgePoints[3] << ", "
->                       << edgePoints[4] << ", "
->                       << edgePoints[5] << ")" << G4endl;
->           }
->         }
-1014,1016c1016,1018
-< 	G4cout << " rgb : (" << (int)dcolor[0] << ", "
-< 		  << (int)dcolor[1] << ", "
-< 		  << (int)dcolor[2] << ")" << G4endl;
----
->         G4cout << " rgb : (" << (int)dcolor[0] << ", "
->                   << (int)dcolor[1] << ", "
->                   << (int)dcolor[2] << ")" << G4endl;
-1024c1026
-< 	G4cout << " detector name : " << dname << G4endl;
----
->         G4cout << " detector name : " << dname << G4endl;
-1048c1050
-< 		      std::ios_base::out|std::ios_base::binary);
----
->                       std::ios_base::out|std::ios_base::binary);
-1070c1072
-< 	      << kComment << G4endl;
----
->               << kComment << G4endl;
-1077,1080c1079,1082
-< 	      << kVoxelSpacing[0] << ", "
-< 	      << kVoxelSpacing[1] << ", "
-< 	      << kVoxelSpacing[2]
-< 	      << ") mm " << G4endl;
----
->               << kVoxelSpacing[0] << ", "
->               << kVoxelSpacing[1] << ", "
->               << kVoxelSpacing[2]
->               << ") mm " << G4endl;
-1105c1107
-< 	      << kPointerToModalityData << ", ";
----
->               << kPointerToModalityData << ", ";
-1110c1112
-< 	      << kPointerToTrackData << G4endl;
----
->               << kPointerToTrackData << G4endl;
-1125,1128c1127,1130
-< 	      << size[0] << ", "
-< 	      << size[1] << ", "
-< 	      << size[2] << ")"
-< 	      << G4endl;
----
->               << size[0] << ", "
->               << size[1] << ", "
->               << size[2] << ")"
->               << G4endl;
-1144,1146c1146,1148
-< 	      << minmax[0] << ", "
-< 	      << minmax[1] << ", "
-< 	      << scale << G4endl;
----
->               << minmax[0] << ", "
->               << minmax[1] << ", "
->               << scale << G4endl;
-1185,1189c1187,1191
-< 	G4cout << "Dose dist. [" << ndose << "] image size : ("
-< 		  << size[0] << ", "
-< 		  << size[1] << ", "
-< 		  << size[2] << ")"
-< 		  << G4endl;
----
->         G4cout << "Dose dist. [" << ndose << "] image size : ("
->                   << size[0] << ", "
->                   << size[1] << ", "
->                   << size[2] << ")"
->                   << G4endl;
-1199c1201
-< 	G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
----
->         G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
-1208,1212c1210,1214
-< 	G4cout << "Dose dist. [" << ndose
-< 		  << "] image min., max., scale : "
-< 		  << minmax[0] << ", "
-< 		  << minmax[1] << ", "
-< 		  << scale << G4endl;
----
->         G4cout << "Dose dist. [" << ndose
->                   << "] image min., max., scale : "
->                   << minmax[0] << ", "
->                   << minmax[1] << ", "
->                   << scale << G4endl;
-1219,1220c1221,1222
-< 	getShortDoseDist(dimage, z, ndose);
-< 	ofile.write((char *)dimage, dsize*2); //sizeof(short)
----
->         getShortDoseDist(dimage, z, ndose);
->         ofile.write((char *)dimage, dsize*2); //sizeof(short)
-1222,1228c1224,1230
-< 	if(DEBUG || kVerbose > 0) {
-< 	  for(int j = 0; j < dsize; j++) {
-< 	    if(dimage[j] < 0)
-< 	      G4cout << "[" << j << "," << z << "]"
-< 			<< dimage[j] << ", ";
-< 	  }
-< 	}
----
->         if(DEBUG || kVerbose > 0) {
->           for(int j = 0; j < dsize; j++) {
->             if(dimage[j] < 0)
->               G4cout << "[" << j << "," << z << "]"
->                         << dimage[j] << ", ";
->           }
->         }
-1239,1243c1241,1245
-< 	G4cout << "Dose dist. [" << ndose
-< 		  << "]image relative location : ("
-< 		  << iCenter[0] << ", "
-< 		  << iCenter[1] << ", "
-< 		  << iCenter[2] << ")" << G4endl;
----
->         G4cout << "Dose dist. [" << ndose
->                   << "]image relative location : ("
->                   << iCenter[0] << ", "
->                   << iCenter[1] << ", "
->                   << iCenter[2] << ")" << G4endl;
-1255,1258c1257,1260
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-1270,1272c1272,1274
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-1289,1291c1291,1293
-< 		<< iCenter[0] << ", "
-< 		<< iCenter[1] << ", "
-< 		<< iCenter[2] << ")" << G4endl;
----
->                 << iCenter[0] << ", "
->                 << iCenter[1] << ", "
->                 << iCenter[2] << ")" << G4endl;
-1301c1303
-< 	      << ntrk << G4endl;
----
->               << ntrk << G4endl;
-1313c1315
-< 	     << G4endl;
----
->              << G4endl;
-1347c1349
-< 		      std::ios_base::out|std::ios_base::binary);
----
->                       std::ios_base::out|std::ios_base::binary);
-1377,1380c1379,1382
-< 	      << kVoxelSpacing[0] << ", "
-< 	      << kVoxelSpacing[1] << ", "
-< 	      << kVoxelSpacing[2]
-< 	      << ") mm " << G4endl;
----
->               << kVoxelSpacing[0] << ", "
->               << kVoxelSpacing[1] << ", "
->               << kVoxelSpacing[2]
->               << ") mm " << G4endl;
-1397,1400c1399,1402
-< 	      << kPointerToModalityData << ", "
-< 	      << kPointerToDoseDistData[0] << ", "
-< 	      << kPointerToROIData << ", "
-< 	      << kPointerToTrackData << G4endl;
----
->               << kPointerToModalityData << ", "
->               << kPointerToDoseDistData[0] << ", "
->               << kPointerToROIData << ", "
->               << kPointerToTrackData << G4endl;
-1415,1418c1417,1420
-< 	      << size[0] << ", "
-< 	      << size[1] << ", "
-< 	      << size[2] << ")"
-< 	      << G4endl;
----
->               << size[0] << ", "
->               << size[1] << ", "
->               << size[2] << ")"
->               << G4endl;
-1434,1436c1436,1438
-< 	      << minmax[0] << ", "
-< 	      << minmax[1] << ", "
-< 	      << scale << G4endl;
----
->               << minmax[0] << ", "
->               << minmax[1] << ", "
->               << scale << G4endl;
-1474,1477c1476,1479
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-1489,1491c1491,1493
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-1502,1506c1504,1508
-< 	for(int j = 0; j < dsize; j++) {
-< 	  if(dimage[j] < 0)
-< 	    G4cout << "[" << j << "," << z << "]"
-< 		      << dimage[j] << ", ";
-< 	}
----
->         for(int j = 0; j < dsize; j++) {
->           if(dimage[j] < 0)
->             G4cout << "[" << j << "," << z << "]"
->                       << dimage[j] << ", ";
->         }
-1519,1521c1521,1523
-< 		<< iCenter[0] << ", "
-< 		<< iCenter[1] << ", "
-< 		<< iCenter[2] << ")" << G4endl;
----
->                 << iCenter[0] << ", "
->                 << iCenter[1] << ", "
->                 << iCenter[2] << ")" << G4endl;
-1533,1536c1535,1538
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-1548,1550c1550,1552
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-1567,1569c1569,1571
-< 		<< iCenter[0] << ", "
-< 		<< iCenter[1] << ", "
-< 		<< iCenter[2] << ")" << G4endl;
----
->                 << iCenter[0] << ", "
->                 << iCenter[1] << ", "
->                 << iCenter[2] << ")" << G4endl;
-1580c1582
-< 	      << ntrk << G4endl;
----
->               << ntrk << G4endl;
-1608c1610
-< 	     << " in G4GMocrenIO::retrieveData()." << G4endl;
----
->              << " in G4GMocrenIO::retrieveData()." << G4endl;
-1631,1633c1633,1635
-< 	G4cout << "Error -- invalid file version : " << (int)ver
-< 		  << G4endl;
-< 	G4cout << "         " << kFileName << G4endl;
----
->         G4cout << "Error -- invalid file version : " << (int)ver
->                   << G4endl;
->         G4cout << "         " << kFileName << G4endl;
-1665c1667
-< 		<< " in G4GMocrenIO::retrieveData3()." << G4endl;
----
->                 << " in G4GMocrenIO::retrieveData3()." << G4endl;
-1707c1709
-< 	      << kComment << G4endl;
----
->               << kComment << G4endl;
-1717,1720c1719,1722
-< 	      << kVoxelSpacing[0] << ", "
-< 	      << kVoxelSpacing[1] << ", "
-< 	      << kVoxelSpacing[2]
-< 	      << ") mm " << G4endl;
----
->               << kVoxelSpacing[0] << ", "
->               << kVoxelSpacing[1] << ", "
->               << kVoxelSpacing[2]
->               << ") mm " << G4endl;
-1755c1757
-< 	      << kPointerToModalityData << ", ";
----
->               << kPointerToModalityData << ", ";
-1759,1761c1761,1763
-< 	      << kPointerToTrackData << ", "
-< 	      << kPointerToDetectorData
-< 	      << G4endl;
----
->               << kPointerToTrackData << ", "
->               << kPointerToDetectorData
->               << G4endl;
-1795,1798c1797,1800
-< 	      << size[0] << ", "
-< 	      << size[1] << ", "
-< 	      << size[2] << ")"
-< 	      << G4endl;
----
->               << size[0] << ", "
->               << size[1] << ", "
->               << size[2] << ")"
->               << G4endl;
-1831,1833c1833,1835
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-1844c1846
-< 	convertEndian(cimage+j*sizeof(short), mimage[j]);
----
->         convertEndian(cimage+j*sizeof(short), mimage[j]);
-1868c1870
-< 	G4cout <<kModalityImageDensityMap[i] << ", ";
----
->         G4cout <<kModalityImageDensityMap[i] << ", ";
-1873c1875
-< 	G4cout <<kModalityImageDensityMap[i] << ", ";
----
->         G4cout <<kModalityImageDensityMap[i] << ", ";
-1892,1895c1894,1897
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-1925,1927c1927,1929
-< 		<< dminmax[0] << ", "
-< 		<< dminmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << dminmax[0] << ", "
->                 << dminmax[1] << ", "
->                 << scale << G4endl;
-1939,1940c1941,1942
-< 	convertEndian(di+xy*sizeof(short), shimage[xy]);
-< 	dimage[xy] = shimage[xy]*dscale;
----
->         convertEndian(di+xy*sizeof(short), shimage[xy]);
->         dimage[xy] = shimage[xy]*dscale;
-1947,1951c1949,1953
-< 	for(int j = 0; j < dsize; j++) {
-< 	  if(dimage[j] < 0)
-< 	    G4cout << "[" << j << "," << z << "]"
-< 		      << dimage[j] << ", ";
-< 	}
----
->         for(int j = 0; j < dsize; j++) {
->           if(dimage[j] < 0)
->             G4cout << "[" << j << "," << z << "]"
->                       << dimage[j] << ", ";
->         }
-1967,1969c1969,1971
-< 		<< fCenter[0] << ", "
-< 		<< fCenter[1] << ", "
-< 		<< fCenter[2] << ")" << G4endl;
----
->                 << fCenter[0] << ", "
->                 << fCenter[1] << ", "
->                 << fCenter[2] << ")" << G4endl;
-1997,2000c1999,2002
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-2015,2017c2017,2019
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-2027c2029
-< 	convertEndian(ri+j*sizeof(short), rimage[j]);
----
->         convertEndian(ri+j*sizeof(short), rimage[j]);
-2043,2045c2045,2047
-< 		<< fCenter[0] << ", "
-< 		<< fCenter[1] << ", "
-< 		<< fCenter[2] << ")" << G4endl;
----
->                 << fCenter[0] << ", "
->                 << fCenter[1] << ", "
->                 << fCenter[2] << ")" << G4endl;
-2078,2079c2080,2081
-< 	float * steppoint = new float[6];
-< 	ifile.read((char *)ctmp, sizeof(float)*6);
----
->         float * steppoint = new float[6];
->         ifile.read((char *)ctmp, sizeof(float)*6);
-2081,2085c2083,2087
-< 	for(int k = 0; k < 6; k++) {
-< 	  convertEndian(ctmp+k*sizeof(float), steppoint[k]);
-< 	}
-< 	
-< 	steps.push_back(steppoint);
----
->         for(int k = 0; k < 6; k++) {
->           convertEndian(ctmp+k*sizeof(float), steppoint[k]);
->         }
->         
->         steps.push_back(steppoint);
-2092,2101c2094,2103
-< 	if(i < 5) {
-< 	  G4cout << i << ": " ;
-< 	  for(int j = 0; j < 3; j++) G4cout << steps[0][j] << " ";
-< 	  int nstp = steps.size();
-< 	  G4cout << "<-> ";
-< 	  for(int j = 3; j < 6; j++) G4cout << steps[nstp-1][j] << " ";
-< 	  G4cout << "    rgb( ";
-< 	  for(int j = 0; j < 3; j++) G4cout << (int)rgb[j] << " ";
-< 	  G4cout << ")" << G4endl;
-< 	}
----
->         if(i < 5) {
->           G4cout << i << ": " ;
->           for(int j = 0; j < 3; j++) G4cout << steps[0][j] << " ";
->           int nstp = steps.size();
->           G4cout << "<-> ";
->           for(int j = 3; j < 6; j++) G4cout << steps[nstp-1][j] << " ";
->           G4cout << "    rgb( ";
->           for(int j = 0; j < 3; j++) G4cout << (int)rgb[j] << " ";
->           G4cout << ")" << G4endl;
->         }
-2119c2121
-< 		<< ndet << G4endl;
----
->                 << ndet << G4endl;
-2129c2131
-< 	G4cout << "# of edges in a detector : " << nedges << G4endl;
----
->         G4cout << "# of edges in a detector : " << nedges << G4endl;
-2137,2140c2139,2142
-< 	ifile.read((char *)cftmp, sizeof(float)*6);
-< 	float * edgePoints = new float[6];
-< 	for(int j = 0; j < 6; j++) convertEndian(&cftmp[sizeof(float)*j], edgePoints[j]);
-< 	detector.push_back(edgePoints);
----
->         ifile.read((char *)cftmp, sizeof(float)*6);
->         float * edgePoints = new float[6];
->         for(int j = 0; j < 6; j++) convertEndian(&cftmp[sizeof(float)*j], edgePoints[j]);
->         detector.push_back(edgePoints);
-2145,2150c2147,2152
-< 	G4cout << " first edge : (" << detector[0][0] << ", "
-< 		  << detector[0][1] << ", "
-< 		  << detector[0][2] << ") - ("
-< 		  << detector[0][3] << ", "
-< 		  << detector[0][4] << ", "
-< 		  << detector[0][5] << ")" << G4endl;
----
->         G4cout << " first edge : (" << detector[0][0] << ", "
->                   << detector[0][1] << ", "
->                   << detector[0][2] << ") - ("
->                   << detector[0][3] << ", "
->                   << detector[0][4] << ", "
->                   << detector[0][5] << ")" << G4endl;
-2157,2160c2159,2162
-< 	G4cout << " detector color : rgb("
-< 		  << (int)dcolor[0] << ", "
-< 		  << (int)dcolor[1] << ", "
-< 		  << (int)dcolor[2] << G4endl;
----
->         G4cout << " detector color : rgb("
->                   << (int)dcolor[0] << ", "
->                   << (int)dcolor[1] << ", "
->                   << (int)dcolor[2] << G4endl;
-2169c2171
-< 	G4cout << " detector name : " << dname << G4endl;
----
->         G4cout << " detector name : " << dname << G4endl;
-2198c2200
-< 		<< " in G4GMocrenIO::retrieveData3()." << G4endl;
----
->                 << " in G4GMocrenIO::retrieveData3()." << G4endl;
-2239c2241
-< 	      << kComment << G4endl;
----
->               << kComment << G4endl;
-2249,2252c2251,2254
-< 	      << kVoxelSpacing[0] << ", "
-< 	      << kVoxelSpacing[1] << ", "
-< 	      << kVoxelSpacing[2]
-< 	      << ") mm " << G4endl;
----
->               << kVoxelSpacing[0] << ", "
->               << kVoxelSpacing[1] << ", "
->               << kVoxelSpacing[2]
->               << ") mm " << G4endl;
-2282c2284
-< 	      << kPointerToModalityData << ", ";
----
->               << kPointerToModalityData << ", ";
-2286c2288
-< 	      << kPointerToTrackData << G4endl;
----
->               << kPointerToTrackData << G4endl;
-2318,2321c2320,2323
-< 	      << size[0] << ", "
-< 	      << size[1] << ", "
-< 	      << size[2] << ")"
-< 	      << G4endl;
----
->               << size[0] << ", "
->               << size[1] << ", "
->               << size[2] << ")"
->               << G4endl;
-2353,2355c2355,2357
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-2366c2368
-< 	convertEndian(cimage+j*sizeof(short), mimage[j]);
----
->         convertEndian(cimage+j*sizeof(short), mimage[j]);
-2389c2391
-< 	G4cout <<kModalityImageDensityMap[i] << ", ";
----
->         G4cout <<kModalityImageDensityMap[i] << ", ";
-2394c2396
-< 	G4cout <<kModalityImageDensityMap[i] << ", ";
----
->         G4cout <<kModalityImageDensityMap[i] << ", ";
-2413,2416c2415,2418
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-2445,2447c2447,2449
-< 		<< dminmax[0] << ", "
-< 		<< dminmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << dminmax[0] << ", "
->                 << dminmax[1] << ", "
->                 << scale << G4endl;
-2459,2460c2461,2462
-< 	convertEndian(di+xy*sizeof(short), shimage[xy]);
-< 	dimage[xy] = shimage[xy]*dscale;
----
->         convertEndian(di+xy*sizeof(short), shimage[xy]);
->         dimage[xy] = shimage[xy]*dscale;
-2467,2471c2469,2473
-< 	for(int j = 0; j < dsize; j++) {
-< 	  if(dimage[j] < 0)
-< 	    G4cout << "[" << j << "," << z << "]"
-< 		      << dimage[j] << ", ";
-< 	}
----
->         for(int j = 0; j < dsize; j++) {
->           if(dimage[j] < 0)
->             G4cout << "[" << j << "," << z << "]"
->                       << dimage[j] << ", ";
->         }
-2487,2489c2489,2491
-< 		<< fCenter[0] << ", "
-< 		<< fCenter[1] << ", "
-< 		<< fCenter[2] << ")" << G4endl;
----
->                 << fCenter[0] << ", "
->                 << fCenter[1] << ", "
->                 << fCenter[2] << ")" << G4endl;
-2508,2511c2510,2513
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-2526,2528c2528,2530
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-2538c2540
-< 	convertEndian(ri+j*sizeof(short), rimage[j]);
----
->         convertEndian(ri+j*sizeof(short), rimage[j]);
-2554,2556c2556,2558
-< 		<< fCenter[0] << ", "
-< 		<< fCenter[1] << ", "
-< 		<< fCenter[2] << ")" << G4endl;
----
->                 << fCenter[0] << ", "
->                 << fCenter[1] << ", "
->                 << fCenter[2] << ")" << G4endl;
-2582,2583c2584,2585
-< 	convertEndian(ctmp+j*sizeof(float), tp[j]);
-< 	if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
----
->         convertEndian(ctmp+j*sizeof(float), tp[j]);
->         if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
-2588,2589c2590,2591
-< 	convertEndian(ctmp+j*sizeof(float), tp[j+3]);
-< 	if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
----
->         convertEndian(ctmp+j*sizeof(float), tp[j+3]);
->         if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
-2636c2638
-< 		<< " in G4GMocrenIO::retrieveData2()." << G4endl;
----
->                 << " in G4GMocrenIO::retrieveData2()." << G4endl;
-2681,2684c2683,2686
-< 	      << kVoxelSpacing[0] << ", "
-< 	      << kVoxelSpacing[1] << ", "
-< 	      << kVoxelSpacing[2]
-< 	      << ") mm " << G4endl;
----
->               << kVoxelSpacing[0] << ", "
->               << kVoxelSpacing[1] << ", "
->               << kVoxelSpacing[2]
->               << ") mm " << G4endl;
-2707,2710c2709,2712
-< 	      << kPointerToModalityData << ", "
-< 	      << kPointerToDoseDistData[0] << ", "
-< 	      << kPointerToROIData << ", "
-< 	      << kPointerToTrackData << G4endl;
----
->               << kPointerToModalityData << ", "
->               << kPointerToDoseDistData[0] << ", "
->               << kPointerToROIData << ", "
->               << kPointerToTrackData << G4endl;
-2742,2745c2744,2747
-< 	      << size[0] << ", "
-< 	      << size[1] << ", "
-< 	      << size[2] << ")"
-< 	      << G4endl;
----
->               << size[0] << ", "
->               << size[1] << ", "
->               << size[2] << ")"
->               << G4endl;
-2771,2773c2773,2775
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-2784c2786
-< 	convertEndian(cimage+j*sizeof(short), mimage[j]);
----
->         convertEndian(cimage+j*sizeof(short), mimage[j]);
-2807c2809
-< 	G4cout <<kModalityImageDensityMap[i] << ", ";
----
->         G4cout <<kModalityImageDensityMap[i] << ", ";
-2812c2814
-< 	G4cout <<kModalityImageDensityMap[i] << ", ";
----
->         G4cout <<kModalityImageDensityMap[i] << ", ";
-2831,2834c2833,2836
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-2853,2855c2855,2857
-< 		<< dminmax[0] << ", "
-< 		<< dminmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << dminmax[0] << ", "
->                 << dminmax[1] << ", "
->                 << scale << G4endl;
-2867,2868c2869,2870
-< 	convertEndian(di+xy*sizeof(short), shimage[xy]);
-< 	dimage[xy] = shimage[xy]*dscale;
----
->         convertEndian(di+xy*sizeof(short), shimage[xy]);
->         dimage[xy] = shimage[xy]*dscale;
-2875,2879c2877,2881
-< 	for(int j = 0; j < dsize; j++) {
-< 	  if(dimage[j] < 0)
-< 	    G4cout << "[" << j << "," << z << "]"
-< 		      << dimage[j] << ", ";
-< 	}
----
->         for(int j = 0; j < dsize; j++) {
->           if(dimage[j] < 0)
->             G4cout << "[" << j << "," << z << "]"
->                       << dimage[j] << ", ";
->         }
-2929,2931c2931,2933
-< 		<< fCenter[0] << ", "
-< 		<< fCenter[1] << ", "
-< 		<< fCenter[2] << ")" << G4endl;
----
->                 << fCenter[0] << ", "
->                 << fCenter[1] << ", "
->                 << fCenter[2] << ")" << G4endl;
-2950,2953c2952,2955
-< 		<< size[0] << ", "
-< 		<< size[1] << ", "
-< 		<< size[2] << ")"
-< 		<< G4endl;
----
->                 << size[0] << ", "
->                 << size[1] << ", "
->                 << size[2] << ")"
->                 << G4endl;
-2968,2970c2970,2972
-< 		<< minmax[0] << ", "
-< 		<< minmax[1] << ", "
-< 		<< scale << G4endl;
----
->                 << minmax[0] << ", "
->                 << minmax[1] << ", "
->                 << scale << G4endl;
-2980c2982
-< 	convertEndian(ri+j*sizeof(short), rimage[j]);
----
->         convertEndian(ri+j*sizeof(short), rimage[j]);
-2996,2998c2998,3000
-< 		<< fCenter[0] << ", "
-< 		<< fCenter[1] << ", "
-< 		<< fCenter[2] << ")" << G4endl;
----
->                 << fCenter[0] << ", "
->                 << fCenter[1] << ", "
->                 << fCenter[2] << ")" << G4endl;
-3025,3026c3027,3028
-< 	convertEndian(ctmp+j*sizeof(float), tp[j]);
-< 	if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
----
->         convertEndian(ctmp+j*sizeof(float), tp[j]);
->         if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
-3031,3032c3033,3034
-< 	convertEndian(ctmp+j*sizeof(float), tp[j+3]);
-< 	if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
----
->         convertEndian(ctmp+j*sizeof(float), tp[j+3]);
->         if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
-3105,3106c3107,3108
-< 			"May", "Jun", "Jul", "Aug",
-< 			"Sep", "Oct", "Nov", "Dec"};
----
->                         "May", "Jun", "Jul", "Aug",
->                         "Sep", "Oct", "Nov", "Dec"};
-3244c3246
-< 			     << kPointerToTrackData << G4endl;
----
->                              << kPointerToTrackData << G4endl;
-3254c3256
-< 			     << kPointerToDetectorData << G4endl;
----
->                              << kPointerToDetectorData << G4endl;
-3459,3460c3461,3462
-< 	rval = i + minmax[0];
-< 	break;
----
->         rval = i + minmax[0];
->         break;
-3584,3586c3586,3588
-< 		<< "first argument is NULL pointer. "
-< 		<< "The argument must be allocated array."
-< 		<< G4endl;
----
->                 << "first argument is NULL pointer. "
->                 << "The argument must be allocated array."
->                 << G4endl;
-3699c3701
-< 	G4cout << "merged dose distribution [" << i << "]" << G4endl;
----
->         G4cout << "merged dose distribution [" << i << "]" << G4endl;
-3861c3863
-< 			       std::vector<unsigned char *> & _colors) {
----
->                                std::vector<unsigned char *> & _colors) {
-3881c3883
-< 				std::vector<unsigned char *> & _colors) {
----
->                                 std::vector<unsigned char *> & _colors) {
-3899,3900c3901,3902
-< 	step.startPoint[i] = (*itr)[i];
-< 	step.endPoint[i] = (*itr)[i+3];
----
->         step.startPoint[i] = (*itr)[i];
->         step.endPoint[i] = (*itr)[i+3];
-3911c3913
-< 			     std::vector<unsigned char *> & _color) {
----
->                              std::vector<unsigned char *> & _color) {
-3927,3928c3929,3930
-< 			  stepPoints[3], stepPoints[4], stepPoints[5],
-< 			  isteps);
----
->                           stepPoints[3], stepPoints[4], stepPoints[5],
->                           isteps);
-3948,3949c3950,3951
-< 				std::vector<float *> & _det, 
-< 				unsigned char _color[3]) {
----
->                                 std::vector<float *> & _det, 
->                                 unsigned char _color[3]) {
-3956,3957c3958,3959
-< 	edge.startPoint[i] = (*itr)[i];
-< 	edge.endPoint[i] = (*itr)[i+3];
----
->         edge.startPoint[i] = (*itr)[i];
->         edge.endPoint[i] = (*itr)[i+3];
-3970,3971c3972,3973
-< 				std::vector<unsigned char *> & _color,
-< 				std::string & _detName) {
----
->                                 std::vector<unsigned char *> & _color,
->                                 std::string & _detName) {
-3990,3991c3992,3993
-< 			     edgePoints[3], edgePoints[4], edgePoints[5],
-< 			     ne);
----
->                              edgePoints[3], edgePoints[4], edgePoints[5],
->                              ne);
+--- source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:30:25.927852525 +0200
++++ source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:27:53.703276416 +0200
+@@ -100,8 +100,8 @@
+   if(!stat) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "Warning: operator + "
+-             << "         Cannot do the operator +"
+-             << G4endl;
++             << "         Cannot do the operator +"
++             << G4endl;
+     return *this;
+   }
+ 
+@@ -141,8 +141,8 @@
+   if(!stat) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "Warning: operator += " << G4endl
+-             << "         Cannot do the operator +="
+-             << G4endl;
++             << "         Cannot do the operator +="
++             << G4endl;
+     return *this;
+   }
+ 
+@@ -252,7 +252,7 @@
+ }
+ 
+ void GMocrenTrack::addStep(float _startx, float _starty, float _startz,
+-                           float _endx, float _endy, float _endz) {
++                           float _endx, float _endy, float _endz) {
+   struct Step step;
+   step.startPoint[0] = _startx;
+   step.startPoint[1] = _starty;
+@@ -263,12 +263,12 @@
+   kTrack.push_back(step);
+ }
+ void GMocrenTrack::getStep(float & _startx, float & _starty, float & _startz,
+-                           float & _endx, float & _endy, float & _endz,
+-                           int _num) {
++                           float & _endx, float & _endy, float & _endz,
++                           int _num) {
+   if(_num >= (int)kTrack.size()) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "GMocrenTrack::getStep(...) Error: "
+-             << "invalid step # : " << _num << G4endl;
++             << "invalid step # : " << _num << G4endl;
+     return;
+   }
+ 
+@@ -303,7 +303,7 @@
+ }
+ 
+ void GMocrenDetector::addEdge(float _startx, float _starty, float _startz,
+-                              float _endx, float _endy, float _endz) {
++                              float _endx, float _endy, float _endz) {
+   struct Edge edge;
+   edge.startPoint[0] = _startx;
+   edge.startPoint[1] = _starty;
+@@ -314,12 +314,12 @@
+   kDetector.push_back(edge);
+ }
+ void GMocrenDetector::getEdge(float & _startx, float & _starty, float & _startz,
+-                           float & _endx, float & _endy, float & _endz,
+-                           int _num) {
++                           float & _endx, float & _endy, float & _endz,
++                           int _num) {
+   if(_num >= (int)kDetector.size()) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "GMocrenDetector::getEdge(...) Error: "
+-             << "invalid edge # : " << _num << G4endl;
++             << "invalid edge # : " << _num << G4endl;
+     return;
+   }
+ 
+@@ -469,9 +469,11 @@
+ 
+   // output file open
+   std::ofstream ofile(kFileName.c_str(),
+-                      std::ios_base::out|std::ios_base::binary);
+-  if(DEBUG || kVerbose > 0)
+-    G4cout << "         file open status: " << ofile << G4endl;
++                      std::ios_base::out|std::ios_base::binary);
++  // FIX
++  // if(DEBUG || kVerbose > 0)
++  //   G4cout << "         file open status: " << ofile << G4endl;
++  
+   
+   // file identifier
+   ofile.write("gMocren ", 8);
+@@ -514,7 +516,7 @@
+   ofile.write((char *)cmt, 1024);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Data comment : "
+-              << kComment << G4endl;
++              << kComment << G4endl;
+   }
+ 
+   // voxel spacings for all images
+@@ -527,10 +529,10 @@
+   }
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Voxel spacing : ("
+-              << kVoxelSpacing[0] << ", "
+-              << kVoxelSpacing[1] << ", "
+-              << kVoxelSpacing[2]
+-              << ") mm " << G4endl;
++              << kVoxelSpacing[0] << ", "
++              << kVoxelSpacing[1] << ", "
++              << kVoxelSpacing[2]
++              << ") mm " << G4endl;
+   }
+ 
+   calcPointers4();
+@@ -592,14 +594,14 @@
+ 
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Each pointer to data : "
+-              << kPointerToModalityData << ", ";
++              << kPointerToModalityData << ", ";
+     for(int i = 0; i < nDoseDist; i++) {
+       G4cout << kPointerToDoseDistData[i] << ", ";
+     }
+     G4cout << kPointerToROIData << ", "
+-              << kPointerToTrackData << ", "
+-              << kPointerToDetectorData
+-              << G4endl;
++              << kPointerToTrackData << ", "
++              << kPointerToDetectorData
++              << G4endl;
+   }
+ 
+   //----- modality image -----//
+@@ -622,10 +624,10 @@
+ 
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image size : ("
+-              << size[0] << ", "
+-              << size[1] << ", "
+-              << size[2] << ")"
+-              << G4endl;
++              << size[0] << ", "
++              << size[1] << ", "
++              << size[2] << ")"
++              << G4endl;
+   }
+ 
+   // modality image max. & min.
+@@ -652,9 +654,9 @@
+   }
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image min., max., scale : "
+-              << minmax[0] << ", "
+-              << minmax[1] << ", "
+-              << scale << G4endl;
++              << minmax[0] << ", "
++              << minmax[1] << ", "
++              << scale << G4endl;
+   }
+ 
+   // modality image
+@@ -666,8 +668,8 @@
+       ofile.write((char *)image, psize*sizeof(short));
+     } else {
+       for(int j = 0; j < psize; j++) {
+-        invertByteOrder((char *)&image[j], stmp[0]);
+-        ofile.write((char *)stmp, 2);
++        invertByteOrder((char *)&image[j], stmp[0]);
++        ofile.write((char *)stmp, 2);
+       }
+     }
+ 
+@@ -710,28 +712,28 @@
+       // dose distrbution image size
+       kDose[ndose].getSize(size);
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)size, 3*sizeof(int));
++        ofile.write((char *)size, 3*sizeof(int));
+       } else {
+-        for(int j = 0; j < 3; j++)
+-          invertByteOrder((char *)&size[j], itmp[j]);
+-        ofile.write((char *)itmp, 12);
++        for(int j = 0; j < 3; j++)
++          invertByteOrder((char *)&size[j], itmp[j]);
++        ofile.write((char *)itmp, 12);
+       }
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. [" << ndose << "] image size : ("
+-                  << size[0] << ", "
+-                  << size[1] << ", "
+-                  << size[2] << ")"
+-                  << G4endl;
++        G4cout << "Dose dist. [" << ndose << "] image size : ("
++                  << size[0] << ", "
++                  << size[1] << ", "
++                  << size[2] << ")"
++                  << G4endl;
+       }
+ 
+       // dose distribution max. & min.
+       getShortDoseDistMinMax(minmax, ndose);
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)minmax, 2*2); // sizeof(shorft)*2
++        ofile.write((char *)minmax, 2*2); // sizeof(shorft)*2
+       } else {
+-        for(int j = 0; j < 2; j++)
+-          invertByteOrder((char *)&minmax[j], stmp[j]);
+-        ofile.write((char *)stmp, 4);
++        for(int j = 0; j < 2; j++)
++          invertByteOrder((char *)&minmax[j], stmp[j]);
++        ofile.write((char *)stmp, 4);
+       }
+ 
+       // dose distribution unit
+@@ -743,7 +745,7 @@
+       std::strncpy(cdunit, cu, lcu);
+       ofile.write((char *)cdunit, 12);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
++        G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
+       }
+ 
+       // dose distribution scaling 
+@@ -751,40 +753,40 @@
+       dscale = getDoseDistScale(ndose);
+       scale = float(dscale);
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)&scale, 4);
++        ofile.write((char *)&scale, 4);
+       } else {
+-        invertByteOrder((char *)&scale, ftmp[0]);
+-        ofile.write((char *)ftmp, 4);
++        invertByteOrder((char *)&scale, ftmp[0]);
++        ofile.write((char *)ftmp, 4);
+       }
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. [" << ndose
+-                  << "] image min., max., scale : "
+-                  << minmax[0] << ", "
+-                  << minmax[1] << ", "
+-                  << scale << G4endl;
++        G4cout << "Dose dist. [" << ndose
++                  << "] image min., max., scale : "
++                  << minmax[0] << ", "
++                  << minmax[1] << ", "
++                  << scale << G4endl;
+       }
+ 
+       // dose distribution image
+       int dsize = size[0]*size[1];
+       short * dimage = new short[dsize];
+       for(int z = 0; z < size[2]; z++) {
+-        getShortDoseDist(dimage, z, ndose);
+-        if(kLittleEndianOutput) {
+-          ofile.write((char *)dimage, dsize*2); //sizeof(short)
+-        } else {
+-          for(int j = 0; j < dsize; j++) {
+-            invertByteOrder((char *)&dimage[j], stmp[0]);
+-            ofile.write((char *)stmp, 2);
+-          }
+-        }
+-
+-        if(DEBUG || kVerbose > 0) {
+-          for(int j = 0; j < dsize; j++) {
+-            if(dimage[j] < 0)
+-              G4cout << "[" << j << "," << z << "]"
+-                        << dimage[j] << ", ";
+-          }
+-        }
++        getShortDoseDist(dimage, z, ndose);
++        if(kLittleEndianOutput) {
++          ofile.write((char *)dimage, dsize*2); //sizeof(short)
++        } else {
++          for(int j = 0; j < dsize; j++) {
++            invertByteOrder((char *)&dimage[j], stmp[0]);
++            ofile.write((char *)stmp, 2);
++          }
++        }
++
++        if(DEBUG || kVerbose > 0) {
++          for(int j = 0; j < dsize; j++) {
++            if(dimage[j] < 0)
++              G4cout << "[" << j << "," << z << "]"
++                        << dimage[j] << ", ";
++          }
++        }
+       }
+       if(DEBUG || kVerbose > 0) G4cout << G4endl;
+       delete [] dimage;
+@@ -794,18 +796,18 @@
+       getDoseDistCenterPosition(fCenter, ndose);
+       for(int i = 0; i < 3; i++) iCenter[i] = (int)fCenter[i];
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)iCenter, 3*4); // 3*sizeof(int)
++        ofile.write((char *)iCenter, 3*4); // 3*sizeof(int)
+       } else {
+-        for(int j = 0; j < 3; j++)
+-          invertByteOrder((char *)&iCenter[j], itmp[j]);
+-        ofile.write((char *)itmp, 12);
++        for(int j = 0; j < 3; j++)
++          invertByteOrder((char *)&iCenter[j], itmp[j]);
++        ofile.write((char *)itmp, 12);
+       }
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. [" << ndose
+-                  << "]image relative location : ("
+-                  << iCenter[0] << ", "
+-                  << iCenter[1] << ", "
+-                  << iCenter[2] << ")" << G4endl;
++        G4cout << "Dose dist. [" << ndose
++                  << "]image relative location : ("
++                  << iCenter[0] << ", "
++                  << iCenter[1] << ", "
++                  << iCenter[2] << ")" << G4endl;
+       }
+ 
+       // dose distribution name
+@@ -814,7 +816,7 @@
+       name.resize(80);
+       ofile.write((char *)name.c_str(), 80);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. name : " << name << G4endl;
++        G4cout << "Dose dist. name : " << name << G4endl;
+       }
+ 
+     }
+@@ -828,15 +830,15 @@
+       ofile.write((char *)size, 3*sizeof(int));
+     } else {
+       for(int j = 0; j < 3; j++)
+-        invertByteOrder((char *)&size[j], itmp[j]);
++        invertByteOrder((char *)&size[j], itmp[j]);
+       ofile.write((char *)itmp, 12);
+     }
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // ROI max. & min.
+@@ -845,7 +847,7 @@
+       ofile.write((char *)minmax, sizeof(short)*2);
+     } else {
+       for(int j = 0; j < 2; j++)
+-        invertByteOrder((char *)&minmax[j], stmp[j]);
++        invertByteOrder((char *)&minmax[j], stmp[j]);
+       ofile.write((char *)stmp, 4);
+     }
+ 
+@@ -859,9 +861,9 @@
+     }
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // ROI image
+@@ -869,12 +871,12 @@
+     for(int i = 0; i < size[2]; i++) {
+       short * rimage = kRoi[0].getImage(i);
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)rimage, rsize*sizeof(short));
++        ofile.write((char *)rimage, rsize*sizeof(short));
+       } else {
+-        for(int j = 0; j < rsize; j++) {
+-          invertByteOrder((char *)&rimage[j], stmp[0]);
+-          ofile.write((char *)stmp, 2);
+-        }
++        for(int j = 0; j < rsize; j++) {
++          invertByteOrder((char *)&rimage[j], stmp[0]);
++          ofile.write((char *)stmp, 2);
++        }
+       }
+ 
+     }
+@@ -886,14 +888,14 @@
+       ofile.write((char *)iCenter, 3*sizeof(int));
+     } else {
+       for(int j = 0; j < 3; j++)
+-        invertByteOrder((char *)&iCenter[j], itmp[j]);
++        invertByteOrder((char *)&iCenter[j], itmp[j]);
+       ofile.write((char *)itmp, 12);
+     }
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image relative location : ("
+-                << iCenter[0] << ", "
+-                << iCenter[1] << ", "
+-                << iCenter[2] << ")" << G4endl;
++                << iCenter[0] << ", "
++                << iCenter[1] << ", "
++                << iCenter[2] << ")" << G4endl;
+     }
+   }
+ 
+@@ -910,7 +912,7 @@
+     }
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "# of tracks : "
+-                << ntrk << G4endl;
++                << ntrk << G4endl;
+     }
+ 
+     for(int nt = 0; nt < ntrk; nt++) {
+@@ -918,13 +920,13 @@
+       // # of steps in a track
+       int nsteps = kTracks[nt].getNumberOfSteps();
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)&nsteps, sizeof(int));
++        ofile.write((char *)&nsteps, sizeof(int));
+       } else {
+-        invertByteOrder((char *)&nsteps, itmp[0]);
+-        ofile.write((char *)itmp, 4);
++        invertByteOrder((char *)&nsteps, itmp[0]);
++        ofile.write((char *)itmp, 4);
+       }
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "# of steps : " << nsteps << G4endl;
++        G4cout << "# of steps : " << nsteps << G4endl;
+       }
+ 
+       // track color
+@@ -935,17 +937,17 @@
+       // steps
+       float stepPoints[6];
+       for(int isteps = 0; isteps < nsteps; isteps++) {
+-        kTracks[nt].getStep(stepPoints[0], stepPoints[1], stepPoints[2],
+-                            stepPoints[3], stepPoints[4], stepPoints[5],
+-                            isteps);
+-
+-        if(kLittleEndianOutput) {
+-          ofile.write((char *)stepPoints, sizeof(float)*6);
+-        } else {
+-          for(int j = 0; j < 6; j++)
+-            invertByteOrder((char *)&stepPoints[j], ftmp[j]);
+-          ofile.write((char *)ftmp, 24);
+-        }
++        kTracks[nt].getStep(stepPoints[0], stepPoints[1], stepPoints[2],
++                            stepPoints[3], stepPoints[4], stepPoints[5],
++                            isteps);
++
++        if(kLittleEndianOutput) {
++          ofile.write((char *)stepPoints, sizeof(float)*6);
++        } else {
++          for(int j = 0; j < 6; j++)
++            invertByteOrder((char *)&stepPoints[j], ftmp[j]);
++          ofile.write((char *)ftmp, 24);
++        }
+       }
+     }
+   }
+@@ -962,7 +964,7 @@
+     }
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "# of detectors : "
+-                << ndet << G4endl;
++                << ndet << G4endl;
+     }
+ 
+     for(int nd = 0; nd < ndet; nd++) {
+@@ -970,40 +972,40 @@
+       // # of edges of a detector
+       int nedges = kDetectors[nd].getNumberOfEdges();
+       if(kLittleEndianOutput) {
+-        ofile.write((char *)&nedges, sizeof(int));
++        ofile.write((char *)&nedges, sizeof(int));
+       } else {
+-        invertByteOrder((char *)&nedges, itmp[0]);
+-        ofile.write((char *)itmp, 4);
++        invertByteOrder((char *)&nedges, itmp[0]);
++        ofile.write((char *)itmp, 4);
+       }
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "# of edges in a detector : " << nedges << G4endl;
++        G4cout << "# of edges in a detector : " << nedges << G4endl;
+       }
+ 
+       // edges
+       float edgePoints[6];
+       for(int ne = 0; ne < nedges; ne++) {
+-        kDetectors[nd].getEdge(edgePoints[0], edgePoints[1], edgePoints[2],
+-                               edgePoints[3], edgePoints[4], edgePoints[5],
+-                               ne);
+-
+-        if(kLittleEndianOutput) {
+-          ofile.write((char *)edgePoints, sizeof(float)*6);
+-        } else {
+-          for(int j = 0; j < 6; j++)
+-            invertByteOrder((char *)&edgePoints[j], ftmp[j]);
+-          ofile.write((char *)ftmp, 24);
+-        }
+-
+-        if(DEBUG || kVerbose > 0) {
+-          if(ne < 1) {
+-            G4cout << " edge : (" << edgePoints[0] << ", "
+-                      << edgePoints[1] << ", "
+-                      << edgePoints[2] << ") - ("
+-                      << edgePoints[3] << ", "
+-                      << edgePoints[4] << ", "
+-                      << edgePoints[5] << ")" << G4endl;
+-          }
+-        }
++        kDetectors[nd].getEdge(edgePoints[0], edgePoints[1], edgePoints[2],
++                               edgePoints[3], edgePoints[4], edgePoints[5],
++                               ne);
++
++        if(kLittleEndianOutput) {
++          ofile.write((char *)edgePoints, sizeof(float)*6);
++        } else {
++          for(int j = 0; j < 6; j++)
++            invertByteOrder((char *)&edgePoints[j], ftmp[j]);
++          ofile.write((char *)ftmp, 24);
++        }
++
++        if(DEBUG || kVerbose > 0) {
++          if(ne < 1) {
++            G4cout << " edge : (" << edgePoints[0] << ", "
++                      << edgePoints[1] << ", "
++                      << edgePoints[2] << ") - ("
++                      << edgePoints[3] << ", "
++                      << edgePoints[4] << ", "
++                      << edgePoints[5] << ")" << G4endl;
++          }
++        }
+       }
+ 
+       // detector color
+@@ -1011,9 +1013,9 @@
+       kDetectors[nd].getColor(dcolor);
+       ofile.write((char *)dcolor, 3);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << " rgb : (" << (int)dcolor[0] << ", "
+-                  << (int)dcolor[1] << ", "
+-                  << (int)dcolor[2] << ")" << G4endl;
++        G4cout << " rgb : (" << (int)dcolor[0] << ", "
++                  << (int)dcolor[1] << ", "
++                  << (int)dcolor[2] << ")" << G4endl;
+       }
+ 
+       // detector name
+@@ -1021,7 +1023,7 @@
+       dname.resize(80);
+       ofile.write((char *)dname.c_str(), 80);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << " detector name : " << dname << G4endl;
++        G4cout << " detector name : " << dname << G4endl;
+       
+       }
+     }
+@@ -1045,7 +1047,7 @@
+ 
+   // output file open
+   std::ofstream ofile(kFileName.c_str(),
+-                      std::ios_base::out|std::ios_base::binary);
++                      std::ios_base::out|std::ios_base::binary);
+ 
+   // file identifier
+   ofile.write("gMocren ", 8);
+@@ -1067,17 +1069,17 @@
+   ofile.write((char *)cmt, 1024);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Data comment : "
+-              << kComment << G4endl;
++              << kComment << G4endl;
+   }
+ 
+   // voxel spacings for all images
+   ofile.write((char *)kVoxelSpacing, 12);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Voxel spacing : ("
+-              << kVoxelSpacing[0] << ", "
+-              << kVoxelSpacing[1] << ", "
+-              << kVoxelSpacing[2]
+-              << ") mm " << G4endl;
++              << kVoxelSpacing[0] << ", "
++              << kVoxelSpacing[1] << ", "
++              << kVoxelSpacing[2]
++              << ") mm " << G4endl;
+   }
+ 
+   calcPointers3();
+@@ -1102,12 +1104,12 @@
+   ofile.write((char *)&kPointerToTrackData, 4);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Each pointer to data : "
+-              << kPointerToModalityData << ", ";
++              << kPointerToModalityData << ", ";
+     for(int i = 0; i < nDoseDist; i++) {
+       G4cout << kPointerToDoseDistData[i] << ", ";
+     }
+     G4cout << kPointerToROIData << ", "
+-              << kPointerToTrackData << G4endl;
++              << kPointerToTrackData << G4endl;
+   }
+ 
+   //----- modality image -----//
+@@ -1122,10 +1124,10 @@
+   ofile.write((char *)size, 3*sizeof(int));
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image size : ("
+-              << size[0] << ", "
+-              << size[1] << ", "
+-              << size[2] << ")"
+-              << G4endl;
++              << size[0] << ", "
++              << size[1] << ", "
++              << size[2] << ")"
++              << G4endl;
+   }
+ 
+   // modality image max. & min.
+@@ -1141,9 +1143,9 @@
+   ofile.write((char *)&scale, 4);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image min., max., scale : "
+-              << minmax[0] << ", "
+-              << minmax[1] << ", "
+-              << scale << G4endl;
++              << minmax[0] << ", "
++              << minmax[1] << ", "
++              << scale << G4endl;
+   }
+ 
+   // modality image
+@@ -1182,11 +1184,11 @@
+       kDose[ndose].getSize(size);
+       ofile.write((char *)size, 3*sizeof(int));
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. [" << ndose << "] image size : ("
+-                  << size[0] << ", "
+-                  << size[1] << ", "
+-                  << size[2] << ")"
+-                  << G4endl;
++        G4cout << "Dose dist. [" << ndose << "] image size : ("
++                  << size[0] << ", "
++                  << size[1] << ", "
++                  << size[2] << ")"
++                  << G4endl;
+       }
+ 
+       // dose distribution max. & min.
+@@ -1196,7 +1198,7 @@
+       // dose distribution unit
+       ofile.write((char *)kDoseUnit.c_str(), 12);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
++        G4cout << "Dose dist. unit : " << kDoseUnit << G4endl;
+       }
+ 
+       // dose distribution scaling 
+@@ -1205,27 +1207,27 @@
+       scale = float(dscale);
+       ofile.write((char *)&scale, 4);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. [" << ndose
+-                  << "] image min., max., scale : "
+-                  << minmax[0] << ", "
+-                  << minmax[1] << ", "
+-                  << scale << G4endl;
++        G4cout << "Dose dist. [" << ndose
++                  << "] image min., max., scale : "
++                  << minmax[0] << ", "
++                  << minmax[1] << ", "
++                  << scale << G4endl;
+       }
+ 
+       // dose distribution image
+       int dsize = size[0]*size[1];
+       short * dimage = new short[dsize];
+       for(int z = 0; z < size[2]; z++) {
+-        getShortDoseDist(dimage, z, ndose);
+-        ofile.write((char *)dimage, dsize*2); //sizeof(short)
++        getShortDoseDist(dimage, z, ndose);
++        ofile.write((char *)dimage, dsize*2); //sizeof(short)
+ 
+-        if(DEBUG || kVerbose > 0) {
+-          for(int j = 0; j < dsize; j++) {
+-            if(dimage[j] < 0)
+-              G4cout << "[" << j << "," << z << "]"
+-                        << dimage[j] << ", ";
+-          }
+-        }
++        if(DEBUG || kVerbose > 0) {
++          for(int j = 0; j < dsize; j++) {
++            if(dimage[j] < 0)
++              G4cout << "[" << j << "," << z << "]"
++                        << dimage[j] << ", ";
++          }
++        }
+       }
+       if(DEBUG || kVerbose > 0) G4cout << G4endl;
+       delete [] dimage;
+@@ -1236,11 +1238,11 @@
+       for(int i = 0; i < 3; i++) iCenter[i] = (int)fCenter[i];
+       ofile.write((char *)iCenter, 3*4); // 3*sizeof(int)
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "Dose dist. [" << ndose
+-                  << "]image relative location : ("
+-                  << iCenter[0] << ", "
+-                  << iCenter[1] << ", "
+-                  << iCenter[2] << ")" << G4endl;
++        G4cout << "Dose dist. [" << ndose
++                  << "]image relative location : ("
++                  << iCenter[0] << ", "
++                  << iCenter[1] << ", "
++                  << iCenter[2] << ")" << G4endl;
+       }
+     }
+   }
+@@ -1252,10 +1254,10 @@
+     ofile.write((char *)size, 3*sizeof(int));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // ROI max. & min.
+@@ -1267,9 +1269,9 @@
+     ofile.write((char *)&scale, sizeof(float));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // ROI image
+@@ -1286,9 +1288,9 @@
+     ofile.write((char *)iCenter, 3*sizeof(int));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image relative location : ("
+-                << iCenter[0] << ", "
+-                << iCenter[1] << ", "
+-                << iCenter[2] << ")" << G4endl;
++                << iCenter[0] << ", "
++                << iCenter[1] << ", "
++                << iCenter[2] << ")" << G4endl;
+     }
+   }
+ 
+@@ -1298,7 +1300,7 @@
+   ofile.write((char *)&ntrk, sizeof(int));
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "# of tracks : "
+-              << ntrk << G4endl;
++              << ntrk << G4endl;
+   }
+   // track position
+   for(int i = 0; i < ntrk; i++) {
+@@ -1310,7 +1312,7 @@
+   if(ntrk != ntcolor) 
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "# of track color information must be the same as # of tracks." 
+-             << G4endl;
++             << G4endl;
+   unsigned char white[3] = {255,255,255}; // default color
+   for(int i = 0; i < ntrk; i++) {
+     if(i < ntcolor) {
+@@ -1344,7 +1346,7 @@
+ 
+   // output file open
+   std::ofstream ofile(kFileName.c_str(),
+-                      std::ios_base::out|std::ios_base::binary);
++                      std::ios_base::out|std::ios_base::binary);
+ 
+   // file identifier
+   ofile.write("GRAPE    ", 8);
+@@ -1374,10 +1376,10 @@
+   ofile.write((char *)kVoxelSpacing, 12);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Voxel spacing : ("
+-              << kVoxelSpacing[0] << ", "
+-              << kVoxelSpacing[1] << ", "
+-              << kVoxelSpacing[2]
+-              << ") mm " << G4endl;
++              << kVoxelSpacing[0] << ", "
++              << kVoxelSpacing[1] << ", "
++              << kVoxelSpacing[2]
++              << ") mm " << G4endl;
+   }
+ 
+   calcPointers2();
+@@ -1394,10 +1396,10 @@
+   ofile.write((char *)&kPointerToTrackData, 4);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Each pointer to data : "
+-              << kPointerToModalityData << ", "
+-              << kPointerToDoseDistData[0] << ", "
+-              << kPointerToROIData << ", "
+-              << kPointerToTrackData << G4endl;
++              << kPointerToModalityData << ", "
++              << kPointerToDoseDistData[0] << ", "
++              << kPointerToROIData << ", "
++              << kPointerToTrackData << G4endl;
+   }
+ 
+   //----- modality image -----//
+@@ -1412,10 +1414,10 @@
+   ofile.write((char *)size, 3*sizeof(int));
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image size : ("
+-              << size[0] << ", "
+-              << size[1] << ", "
+-              << size[2] << ")"
+-              << G4endl;
++              << size[0] << ", "
++              << size[1] << ", "
++              << size[2] << ")"
++              << G4endl;
+   }
+ 
+   // modality image max. & min.
+@@ -1431,9 +1433,9 @@
+   ofile.write((char *)&scale, 4);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image min., max., scale : "
+-              << minmax[0] << ", "
+-              << minmax[1] << ", "
+-              << scale << G4endl;
++              << minmax[0] << ", "
++              << minmax[1] << ", "
++              << scale << G4endl;
+   }
+ 
+   // modality image
+@@ -1471,10 +1473,10 @@
+     ofile.write((char *)size, 3*sizeof(int));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // dose distribution max. & min.
+@@ -1486,9 +1488,9 @@
+     ofile.write((char *)&scale, sizeof(float));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // dose distribution image
+@@ -1499,11 +1501,11 @@
+       ofile.write((char *)dimage, dsize*sizeof(short));
+ 
+       if(DEBUG || kVerbose > 0) {
+-        for(int j = 0; j < dsize; j++) {
+-          if(dimage[j] < 0)
+-            G4cout << "[" << j << "," << z << "]"
+-                      << dimage[j] << ", ";
+-        }
++        for(int j = 0; j < dsize; j++) {
++          if(dimage[j] < 0)
++            G4cout << "[" << j << "," << z << "]"
++                      << dimage[j] << ", ";
++        }
+       }
+     }
+     if(DEBUG || kVerbose > 0) G4cout << G4endl;
+@@ -1516,9 +1518,9 @@
+     ofile.write((char *)iCenter, 3*sizeof(int));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image relative location : ("
+-                << iCenter[0] << ", "
+-                << iCenter[1] << ", "
+-                << iCenter[2] << ")" << G4endl;
++                << iCenter[0] << ", "
++                << iCenter[1] << ", "
++                << iCenter[2] << ")" << G4endl;
+     }
+ 
+   }
+@@ -1530,10 +1532,10 @@
+     ofile.write((char *)size, 3*sizeof(int));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // ROI max. & min.
+@@ -1545,9 +1547,9 @@
+     ofile.write((char *)&scale, sizeof(float));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // ROI image
+@@ -1564,9 +1566,9 @@
+     ofile.write((char *)iCenter, 3*sizeof(int));
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image relative location : ("
+-                << iCenter[0] << ", "
+-                << iCenter[1] << ", "
+-                << iCenter[2] << ")" << G4endl;
++                << iCenter[0] << ", "
++                << iCenter[1] << ", "
++                << iCenter[2] << ")" << G4endl;
+     }
+   }
+ 
+@@ -1577,7 +1579,7 @@
+   ofile.write((char *)&ntrk, sizeof(int));
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "# of tracks : "
+-              << ntrk << G4endl;
++              << ntrk << G4endl;
+   }
+   for(int i = 0; i < ntrk; i++) {
+     float * tp = kSteps[i];
+@@ -1605,7 +1607,7 @@
+   if(!ifile) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "Cannot open file: " << kFileName
+-             << " in G4GMocrenIO::retrieveData()." << G4endl;
++             << " in G4GMocrenIO::retrieveData()." << G4endl;
+     return false;
+   }
+ 
+@@ -1628,9 +1630,9 @@
+       retrieveData4();
+     } else {
+       if (G4VisManager::GetVerbosity() >= G4VisManager::errors) {
+-        G4cout << "Error -- invalid file version : " << (int)ver
+-                  << G4endl;
+-        G4cout << "         " << kFileName << G4endl;
++        G4cout << "Error -- invalid file version : " << (int)ver
++                  << G4endl;
++        G4cout << "         " << kFileName << G4endl;
+       }
+       std::exit(-1);
+     }
+@@ -1662,7 +1664,7 @@
+   if(!ifile) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "Cannot open file: " << kFileName
+-                << " in G4GMocrenIO::retrieveData3()." << G4endl;
++                << " in G4GMocrenIO::retrieveData3()." << G4endl;
+     return false;
+   }
+ 
+@@ -1704,7 +1706,7 @@
+   setComment(scmt);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Data comment : "
+-              << kComment << G4endl;
++              << kComment << G4endl;
+   }
+ 
+   // voxel spacings for all images
+@@ -1714,10 +1716,10 @@
+   convertEndian(ctmp+8, kVoxelSpacing[2]);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Voxel spacing : ("
+-              << kVoxelSpacing[0] << ", "
+-              << kVoxelSpacing[1] << ", "
+-              << kVoxelSpacing[2]
+-              << ") mm " << G4endl;
++              << kVoxelSpacing[0] << ", "
++              << kVoxelSpacing[1] << ", "
++              << kVoxelSpacing[2]
++              << ") mm " << G4endl;
+   }
+ 
+ 
+@@ -1752,13 +1754,13 @@
+ 
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Each pointer to data : "
+-              << kPointerToModalityData << ", ";
++              << kPointerToModalityData << ", ";
+     for(int i = 0; i < nDoseDist; i++)
+       G4cout << kPointerToDoseDistData[i] << ", ";
+     G4cout << kPointerToROIData << ", "
+-              << kPointerToTrackData << ", "
+-              << kPointerToDetectorData
+-              << G4endl;
++              << kPointerToTrackData << ", "
++              << kPointerToDetectorData
++              << G4endl;
+   }
+ 
+ 
+@@ -1792,10 +1794,10 @@
+   convertEndian(ctmp+2*sizeof(int), size[2]);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image size : ("
+-              << size[0] << ", "
+-              << size[1] << ", "
+-              << size[2] << ")"
+-              << G4endl;
++              << size[0] << ", "
++              << size[1] << ", "
++              << size[2] << ")"
++              << G4endl;
+   }
+   kModality.setSize(size);
+ 
+@@ -1828,9 +1830,9 @@
+     kModality.setScale(dscale = scale);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Modality image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // modality density
+@@ -1841,7 +1843,7 @@
+       ifile.read((char *)cimage, psize*sizeof(short));
+       short * mimage = new short[psize];
+       for(int j = 0; j < psize; j++) {
+-        convertEndian(cimage+j*sizeof(short), mimage[j]);
++        convertEndian(cimage+j*sizeof(short), mimage[j]);
+       }
+       kModality.addImage(mimage);
+ 
+@@ -1865,12 +1867,12 @@
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "density map : " << std::ends;
+       for(int i = 0; i < 10; i++)
+-        G4cout <<kModalityImageDensityMap[i] << ", ";
++        G4cout <<kModalityImageDensityMap[i] << ", ";
+       G4cout << G4endl;
+       for(int i = 0; i < 10; i++) G4cout << "..";
+       G4cout << G4endl;
+       for(size_t i =kModalityImageDensityMap.size() - 10; i <kModalityImageDensityMap.size(); i++)
+-        G4cout <<kModalityImageDensityMap[i] << ", ";
++        G4cout <<kModalityImageDensityMap[i] << ", ";
+       G4cout << G4endl;
+     }
+ 
+@@ -1889,10 +1891,10 @@
+     convertEndian(ctmp+2*sizeof(int), size[2]);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+     kDose[ndose].setSize(size);
+ 
+@@ -1922,9 +1924,9 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image min., max., scale : "
+-                << dminmax[0] << ", "
+-                << dminmax[1] << ", "
+-                << scale << G4endl;
++                << dminmax[0] << ", "
++                << dminmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // dose distribution image
+@@ -1936,19 +1938,19 @@
+       ifile.read((char *)di, dsize*sizeof(short));
+       double * dimage = new double[dsize];
+       for(int xy = 0; xy < dsize; xy++) {
+-        convertEndian(di+xy*sizeof(short), shimage[xy]);
+-        dimage[xy] = shimage[xy]*dscale;
++        convertEndian(di+xy*sizeof(short), shimage[xy]);
++        dimage[xy] = shimage[xy]*dscale;
+       }
+       kDose[ndose].addImage(dimage);
+ 
+       if(DEBUG || kVerbose > 0) G4cout << "[" << z << "]" << dimage[(size_t)(dsize*0.55)] << ", ";
+ 
+       if(DEBUG || kVerbose > 0) {
+-        for(int j = 0; j < dsize; j++) {
+-          if(dimage[j] < 0)
+-            G4cout << "[" << j << "," << z << "]"
+-                      << dimage[j] << ", ";
+-        }
++        for(int j = 0; j < dsize; j++) {
++          if(dimage[j] < 0)
++            G4cout << "[" << j << "," << z << "]"
++                      << dimage[j] << ", ";
++        }
+       }
+     }
+     delete [] shimage;
+@@ -1964,9 +1966,9 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image relative location : ("
+-                << fCenter[0] << ", "
+-                << fCenter[1] << ", "
+-                << fCenter[2] << ")" << G4endl;
++                << fCenter[0] << ", "
++                << fCenter[1] << ", "
++                << fCenter[2] << ")" << G4endl;
+     }
+ 
+ 
+@@ -1994,10 +1996,10 @@
+     kRoi[0].setSize(size);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // ROI max. & min.
+@@ -2012,9 +2014,9 @@
+     kRoi[0].setScale(dscale = scale);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // ROI image
+@@ -2024,7 +2026,7 @@
+       ifile.read((char *)ri, rsize*sizeof(short));
+       short * rimage = new short[rsize];
+       for(int j = 0; j < rsize; j++) {
+-        convertEndian(ri+j*sizeof(short), rimage[j]);
++        convertEndian(ri+j*sizeof(short), rimage[j]);
+       }
+       kRoi[0].addImage(rimage);
+ 
+@@ -2040,9 +2042,9 @@
+     kRoi[0].setCenterPosition(fCenter);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image relative location : ("
+-                << fCenter[0] << ", "
+-                << fCenter[1] << ", "
+-                << fCenter[2] << ")" << G4endl;
++                << fCenter[0] << ", "
++                << fCenter[1] << ", "
++                << fCenter[2] << ")" << G4endl;
+     }
+ 
+   }
+@@ -2075,30 +2077,30 @@
+       // steps
+       for(int j = 0; j < nsteps; j++) {
+ 
+-        float * steppoint = new float[6];
+-        ifile.read((char *)ctmp, sizeof(float)*6);
++        float * steppoint = new float[6];
++        ifile.read((char *)ctmp, sizeof(float)*6);
+ 
+-        for(int k = 0; k < 6; k++) {
+-          convertEndian(ctmp+k*sizeof(float), steppoint[k]);
+-        }
+-        
+-        steps.push_back(steppoint);
++        for(int k = 0; k < 6; k++) {
++          convertEndian(ctmp+k*sizeof(float), steppoint[k]);
++        }
++        
++        steps.push_back(steppoint);
+       }
+ 
+       // add a track to the track container
+       addTrack(steps, rgb);
+ 
+       if(DEBUG || kVerbose > 0) {
+-        if(i < 5) {
+-          G4cout << i << ": " ;
+-          for(int j = 0; j < 3; j++) G4cout << steps[0][j] << " ";
+-          int nstp = steps.size();
+-          G4cout << "<-> ";
+-          for(int j = 3; j < 6; j++) G4cout << steps[nstp-1][j] << " ";
+-          G4cout << "    rgb( ";
+-          for(int j = 0; j < 3; j++) G4cout << (int)rgb[j] << " ";
+-          G4cout << ")" << G4endl;
+-        }
++        if(i < 5) {
++          G4cout << i << ": " ;
++          for(int j = 0; j < 3; j++) G4cout << steps[0][j] << " ";
++          int nstp = steps.size();
++          G4cout << "<-> ";
++          for(int j = 3; j < 6; j++) G4cout << steps[nstp-1][j] << " ";
++          G4cout << "    rgb( ";
++          for(int j = 0; j < 3; j++) G4cout << (int)rgb[j] << " ";
++          G4cout << ")" << G4endl;
++        }
+       }
+     }
+ 
+@@ -2116,7 +2118,7 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "# of detectors : "
+-                << ndet << G4endl;
++                << ndet << G4endl;
+     }
+ 
+     for(int nd = 0; nd < ndet; nd++) {
+@@ -2126,7 +2128,7 @@
+       int nedges;
+       convertEndian(ctmp, nedges);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << "# of edges in a detector : " << nedges << G4endl;
++        G4cout << "# of edges in a detector : " << nedges << G4endl;
+       }
+ 
+       // edges
+@@ -2134,30 +2136,30 @@
+       char cftmp[24];
+       for(int ne = 0; ne < nedges; ne++) {
+       
+-        ifile.read((char *)cftmp, sizeof(float)*6);
+-        float * edgePoints = new float[6];
+-        for(int j = 0; j < 6; j++) convertEndian(&cftmp[sizeof(float)*j], edgePoints[j]);
+-        detector.push_back(edgePoints);
++        ifile.read((char *)cftmp, sizeof(float)*6);
++        float * edgePoints = new float[6];
++        for(int j = 0; j < 6; j++) convertEndian(&cftmp[sizeof(float)*j], edgePoints[j]);
++        detector.push_back(edgePoints);
+ 
+       }
+ 
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << " first edge : (" << detector[0][0] << ", "
+-                  << detector[0][1] << ", "
+-                  << detector[0][2] << ") - ("
+-                  << detector[0][3] << ", "
+-                  << detector[0][4] << ", "
+-                  << detector[0][5] << ")" << G4endl;
++        G4cout << " first edge : (" << detector[0][0] << ", "
++                  << detector[0][1] << ", "
++                  << detector[0][2] << ") - ("
++                  << detector[0][3] << ", "
++                  << detector[0][4] << ", "
++                  << detector[0][5] << ")" << G4endl;
+       }
+ 
+       // detector color
+       unsigned char dcolor[3];
+       ifile.read((char *)dcolor, 3);
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << " detector color : rgb("
+-                  << (int)dcolor[0] << ", "
+-                  << (int)dcolor[1] << ", "
+-                  << (int)dcolor[2] << G4endl;
++        G4cout << " detector color : rgb("
++                  << (int)dcolor[0] << ", "
++                  << (int)dcolor[1] << ", "
++                  << (int)dcolor[2] << G4endl;
+       }
+ 
+ 
+@@ -2166,7 +2168,7 @@
+       ifile.read((char *)cname, 80);
+       std::string dname = cname;
+       if(DEBUG || kVerbose > 0) {
+-        G4cout << " detector name : " << dname << G4endl;
++        G4cout << " detector name : " << dname << G4endl;
+       }
+ 
+ 
+@@ -2195,7 +2197,7 @@
+   if(!ifile) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "Cannot open file: " << kFileName
+-                << " in G4GMocrenIO::retrieveData3()." << G4endl;
++                << " in G4GMocrenIO::retrieveData3()." << G4endl;
+     return false;
+   }
+ 
+@@ -2236,7 +2238,7 @@
+   setComment(scmt);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Data comment : "
+-              << kComment << G4endl;
++              << kComment << G4endl;
+   }
+ 
+   // voxel spacings for all images
+@@ -2246,10 +2248,10 @@
+   convertEndian(ctmp+8, kVoxelSpacing[2]);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Voxel spacing : ("
+-              << kVoxelSpacing[0] << ", "
+-              << kVoxelSpacing[1] << ", "
+-              << kVoxelSpacing[2]
+-              << ") mm " << G4endl;
++              << kVoxelSpacing[0] << ", "
++              << kVoxelSpacing[1] << ", "
++              << kVoxelSpacing[2]
++              << ") mm " << G4endl;
+   }
+ 
+ 
+@@ -2279,11 +2281,11 @@
+   convertEndian(ctmp, kPointerToTrackData);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Each pointer to data : "
+-              << kPointerToModalityData << ", ";
++              << kPointerToModalityData << ", ";
+     for(int i = 0; i < nDoseDist; i++)
+       G4cout << kPointerToDoseDistData[0] << ", ";
+     G4cout << kPointerToROIData << ", "
+-              << kPointerToTrackData << G4endl;
++              << kPointerToTrackData << G4endl;
+   }
+ 
+   if(kPointerToModalityData == 0 && kPointerToDoseDistData.size() == 0 &&
+@@ -2315,10 +2317,10 @@
+   convertEndian(ctmp+2*sizeof(int), size[2]);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image size : ("
+-              << size[0] << ", "
+-              << size[1] << ", "
+-              << size[2] << ")"
+-              << G4endl;
++              << size[0] << ", "
++              << size[1] << ", "
++              << size[2] << ")"
++              << G4endl;
+   }
+   kModality.setSize(size);
+ 
+@@ -2350,9 +2352,9 @@
+     kModality.setScale(dscale = scale);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Modality image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // modality density
+@@ -2363,7 +2365,7 @@
+       ifile.read((char *)cimage, psize*sizeof(short));
+       short * mimage = new short[psize];
+       for(int j = 0; j < psize; j++) {
+-        convertEndian(cimage+j*sizeof(short), mimage[j]);
++        convertEndian(cimage+j*sizeof(short), mimage[j]);
+       }
+       kModality.addImage(mimage);
+ 
+@@ -2386,12 +2388,12 @@
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "density map : " << std::ends;
+       for(int i = 0; i < 10; i++)
+-        G4cout <<kModalityImageDensityMap[i] << ", ";
++        G4cout <<kModalityImageDensityMap[i] << ", ";
+       G4cout << G4endl;
+       for(int i = 0; i < 10; i++) G4cout << "..";
+       G4cout << G4endl;
+       for(size_t i =kModalityImageDensityMap.size() - 10; i <kModalityImageDensityMap.size(); i++)
+-        G4cout <<kModalityImageDensityMap[i] << ", ";
++        G4cout <<kModalityImageDensityMap[i] << ", ";
+       G4cout << G4endl;
+     }
+ 
+@@ -2410,10 +2412,10 @@
+     convertEndian(ctmp+2*sizeof(int), size[2]);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+     kDose[ndose].setSize(size);
+ 
+@@ -2442,9 +2444,9 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image min., max., scale : "
+-                << dminmax[0] << ", "
+-                << dminmax[1] << ", "
+-                << scale << G4endl;
++                << dminmax[0] << ", "
++                << dminmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // dose distribution image
+@@ -2456,19 +2458,19 @@
+       ifile.read((char *)di, dsize*sizeof(short));
+       double * dimage = new double[dsize];
+       for(int xy = 0; xy < dsize; xy++) {
+-        convertEndian(di+xy*sizeof(short), shimage[xy]);
+-        dimage[xy] = shimage[xy]*dscale;
++        convertEndian(di+xy*sizeof(short), shimage[xy]);
++        dimage[xy] = shimage[xy]*dscale;
+       }
+       kDose[ndose].addImage(dimage);
+ 
+       if(DEBUG || kVerbose > 0) G4cout << "[" << z << "]" << dimage[(size_t)(dsize*0.55)] << ", ";
+ 
+       if(DEBUG || kVerbose > 0) {
+-        for(int j = 0; j < dsize; j++) {
+-          if(dimage[j] < 0)
+-            G4cout << "[" << j << "," << z << "]"
+-                      << dimage[j] << ", ";
+-        }
++        for(int j = 0; j < dsize; j++) {
++          if(dimage[j] < 0)
++            G4cout << "[" << j << "," << z << "]"
++                      << dimage[j] << ", ";
++        }
+       }
+     }
+     delete [] shimage;
+@@ -2484,9 +2486,9 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image relative location : ("
+-                << fCenter[0] << ", "
+-                << fCenter[1] << ", "
+-                << fCenter[2] << ")" << G4endl;
++                << fCenter[0] << ", "
++                << fCenter[1] << ", "
++                << fCenter[2] << ")" << G4endl;
+     }
+ 
+ 
+@@ -2505,10 +2507,10 @@
+     kRoi[0].setSize(size);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // ROI max. & min.
+@@ -2523,9 +2525,9 @@
+     kRoi[0].setScale(dscale = scale);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // ROI image
+@@ -2535,7 +2537,7 @@
+       ifile.read((char *)ri, rsize*sizeof(short));
+       short * rimage = new short[rsize];
+       for(int j = 0; j < rsize; j++) {
+-        convertEndian(ri+j*sizeof(short), rimage[j]);
++        convertEndian(ri+j*sizeof(short), rimage[j]);
+       }
+       kRoi[0].addImage(rimage);
+ 
+@@ -2551,9 +2553,9 @@
+     kRoi[0].setCenterPosition(fCenter);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image relative location : ("
+-                << fCenter[0] << ", "
+-                << fCenter[1] << ", "
+-                << fCenter[2] << ")" << G4endl;
++                << fCenter[0] << ", "
++                << fCenter[1] << ", "
++                << fCenter[2] << ")" << G4endl;
+     }
+ 
+   }
+@@ -2579,14 +2581,14 @@
+       ifile.read((char *)ctmp, sizeof(float)*3);
+       if(DEBUG || kVerbose > 0) if(i < 10) G4cout << i << ": " ;
+       for(int j = 0; j < 3; j++) {
+-        convertEndian(ctmp+j*sizeof(float), tp[j]);
+-        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
++        convertEndian(ctmp+j*sizeof(float), tp[j]);
++        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
+       }
+ 
+       ifile.read((char *)ctmp, sizeof(float)*3);
+       for(int j = 0; j < 3; j++) {
+-        convertEndian(ctmp+j*sizeof(float), tp[j+3]);
+-        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
++        convertEndian(ctmp+j*sizeof(float), tp[j+3]);
++        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
+       }
+       addTrack(tp);
+       if(DEBUG || kVerbose > 0) if(i < 10) G4cout << G4endl;
+@@ -2633,7 +2635,7 @@
+   if(!ifile) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "Cannot open file: " << kFileName
+-                << " in G4GMocrenIO::retrieveData2()." << G4endl;
++                << " in G4GMocrenIO::retrieveData2()." << G4endl;
+     return false;
+   }
+ 
+@@ -2678,10 +2680,10 @@
+   convertEndian(ctmp+8, kVoxelSpacing[2]);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Voxel spacing : ("
+-              << kVoxelSpacing[0] << ", "
+-              << kVoxelSpacing[1] << ", "
+-              << kVoxelSpacing[2]
+-              << ") mm " << G4endl;
++              << kVoxelSpacing[0] << ", "
++              << kVoxelSpacing[1] << ", "
++              << kVoxelSpacing[2]
++              << ") mm " << G4endl;
+   }
+ 
+ 
+@@ -2704,10 +2706,10 @@
+   convertEndian(ctmp, kPointerToTrackData);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Each pointer to data : "
+-              << kPointerToModalityData << ", "
+-              << kPointerToDoseDistData[0] << ", "
+-              << kPointerToROIData << ", "
+-              << kPointerToTrackData << G4endl;
++              << kPointerToModalityData << ", "
++              << kPointerToDoseDistData[0] << ", "
++              << kPointerToROIData << ", "
++              << kPointerToTrackData << G4endl;
+   }
+ 
+   if(kPointerToModalityData == 0 && kPointerToDoseDistData.size() == 0 &&
+@@ -2739,10 +2741,10 @@
+   convertEndian(ctmp+2*sizeof(int), size[2]);
+   if(DEBUG || kVerbose > 0) {
+     G4cout << "Modality image size : ("
+-              << size[0] << ", "
+-              << size[1] << ", "
+-              << size[2] << ")"
+-              << G4endl;
++              << size[0] << ", "
++              << size[1] << ", "
++              << size[2] << ")"
++              << G4endl;
+   }
+   kModality.setSize(size);
+ 
+@@ -2768,9 +2770,9 @@
+     kModality.setScale(dscale = scale);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Modality image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // modality density
+@@ -2781,7 +2783,7 @@
+       ifile.read((char *)cimage, psize*sizeof(short));
+       short * mimage = new short[psize];
+       for(int j = 0; j < psize; j++) {
+-        convertEndian(cimage+j*sizeof(short), mimage[j]);
++        convertEndian(cimage+j*sizeof(short), mimage[j]);
+       }
+       kModality.addImage(mimage);
+ 
+@@ -2804,12 +2806,12 @@
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "density map : " << std::ends;
+       for(int i = 0; i < 10; i++)
+-        G4cout <<kModalityImageDensityMap[i] << ", ";
++        G4cout <<kModalityImageDensityMap[i] << ", ";
+       G4cout << G4endl;
+       for(int i = 0; i < 10; i++) G4cout << "..";
+       G4cout << G4endl;
+       for(size_t i =kModalityImageDensityMap.size() - 10; i <kModalityImageDensityMap.size(); i++)
+-        G4cout <<kModalityImageDensityMap[i] << ", ";
++        G4cout <<kModalityImageDensityMap[i] << ", ";
+       G4cout << G4endl;
+     }
+ 
+@@ -2828,10 +2830,10 @@
+     convertEndian(ctmp+2*sizeof(int), size[2]);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+     kDose[0].setSize(size);
+ 
+@@ -2850,9 +2852,9 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image min., max., scale : "
+-                << dminmax[0] << ", "
+-                << dminmax[1] << ", "
+-                << scale << G4endl;
++                << dminmax[0] << ", "
++                << dminmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // dose distribution image
+@@ -2864,19 +2866,19 @@
+       ifile.read((char *)di, dsize*sizeof(short));
+       double * dimage = new double[dsize];
+       for(int xy = 0; xy < dsize; xy++) {
+-        convertEndian(di+xy*sizeof(short), shimage[xy]);
+-        dimage[xy] = shimage[xy]*dscale;
++        convertEndian(di+xy*sizeof(short), shimage[xy]);
++        dimage[xy] = shimage[xy]*dscale;
+       }
+       kDose[0].addImage(dimage);
+ 
+       if(DEBUG || kVerbose > 0) G4cout << "[" << z << "]" << dimage[(size_t)(dsize*0.55)] << ", ";
+ 
+       if(DEBUG || kVerbose > 0) {
+-        for(int j = 0; j < dsize; j++) {
+-          if(dimage[j] < 0)
+-            G4cout << "[" << j << "," << z << "]"
+-                      << dimage[j] << ", ";
+-        }
++        for(int j = 0; j < dsize; j++) {
++          if(dimage[j] < 0)
++            G4cout << "[" << j << "," << z << "]"
++                      << dimage[j] << ", ";
++        }
+       }
+     }
+     delete [] shimage;
+@@ -2926,9 +2928,9 @@
+ 
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "Dose dist. image relative location : ("
+-                << fCenter[0] << ", "
+-                << fCenter[1] << ", "
+-                << fCenter[2] << ")" << G4endl;
++                << fCenter[0] << ", "
++                << fCenter[1] << ", "
++                << fCenter[2] << ")" << G4endl;
+     }
+ 
+ 
+@@ -2947,10 +2949,10 @@
+     kRoi[0].setSize(size);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image size : ("
+-                << size[0] << ", "
+-                << size[1] << ", "
+-                << size[2] << ")"
+-                << G4endl;
++                << size[0] << ", "
++                << size[1] << ", "
++                << size[2] << ")"
++                << G4endl;
+     }
+ 
+     // ROI max. & min.
+@@ -2965,9 +2967,9 @@
+     kRoi[0].setScale(dscale = scale);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image min., max., scale : "
+-                << minmax[0] << ", "
+-                << minmax[1] << ", "
+-                << scale << G4endl;
++                << minmax[0] << ", "
++                << minmax[1] << ", "
++                << scale << G4endl;
+     }
+ 
+     // ROI image
+@@ -2977,7 +2979,7 @@
+       ifile.read((char *)ri, rsize*sizeof(short));
+       short * rimage = new short[rsize];
+       for(int j = 0; j < rsize; j++) {
+-        convertEndian(ri+j*sizeof(short), rimage[j]);
++        convertEndian(ri+j*sizeof(short), rimage[j]);
+       }
+       kRoi[0].addImage(rimage);
+ 
+@@ -2993,9 +2995,9 @@
+     kRoi[0].setCenterPosition(fCenter);
+     if(DEBUG || kVerbose > 0) {
+       G4cout << "ROI image relative location : ("
+-                << fCenter[0] << ", "
+-                << fCenter[1] << ", "
+-                << fCenter[2] << ")" << G4endl;
++                << fCenter[0] << ", "
++                << fCenter[1] << ", "
++                << fCenter[2] << ")" << G4endl;
+     }
+ 
+   }
+@@ -3022,14 +3024,14 @@
+       ifile.read((char *)ctmp, sizeof(float)*3);
+       if(DEBUG || kVerbose > 0) if(i < 10) G4cout << i << ": " ;
+       for(int j = 0; j < 3; j++) {
+-        convertEndian(ctmp+j*sizeof(float), tp[j]);
+-        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
++        convertEndian(ctmp+j*sizeof(float), tp[j]);
++        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j] << ", ";
+       }
+ 
+       ifile.read((char *)ctmp, sizeof(float)*3);
+       for(int j = 0; j < 3; j++) {
+-        convertEndian(ctmp+j*sizeof(float), tp[j+3]);
+-        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
++        convertEndian(ctmp+j*sizeof(float), tp[j+3]);
++        if(DEBUG || kVerbose > 0) if(i < 10) G4cout << tp[j+3] << ", ";
+       }
+ 
+       kSteps.push_back(tp);
+@@ -3102,8 +3104,8 @@
+   ti = localtime(&t);
+ 
+   char cmonth[12][4] = {"Jan", "Feb", "Mar", "Apr",
+-                        "May", "Jun", "Jul", "Aug",
+-                        "Sep", "Oct", "Nov", "Dec"};
++                        "May", "Jun", "Jul", "Aug",
++                        "Sep", "Oct", "Nov", "Dec"};
+   std::stringstream ss;
+   ss << std::setfill('0')
+      << std::setw(2)
+@@ -3241,7 +3243,7 @@
+     setPointerToTrackData(pointer0);
+   }
+   if(kVerbose > 0) G4cout << " pointer to the track data :"
+-                             << kPointerToTrackData << G4endl;
++                             << kPointerToTrackData << G4endl;
+ 
+   // pointer to detector data
+   int ndet = kDetectors.size();
+@@ -3251,7 +3253,7 @@
+     kPointerToDetectorData = 0;
+   }
+   if(kVerbose > 0) G4cout << " pointer to the detector data :"
+-                             << kPointerToDetectorData << G4endl;
++                             << kPointerToDetectorData << G4endl;
+ 
+ }
+ 
+@@ -3456,8 +3458,8 @@
+     for(int i = 0; i < nmap; i++) {
+       //G4cout << kModalityImageDensityMap[i] << G4endl;
+       if(_dens <= kModalityImageDensityMap[i]) {
+-        rval = i + minmax[0];
+-        break;
++        rval = i + minmax[0];
++        break;
+       }
+     }
+   }
+@@ -3581,9 +3583,9 @@
+   if(_data == NULL) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       G4cout << "In G4GMocrenIO::getShortDoseDist(), "
+-                << "first argument is NULL pointer. "
+-                << "The argument must be allocated array."
+-                << G4endl;
++                << "first argument is NULL pointer. "
++                << "The argument must be allocated array."
++                << G4endl;
+     std::exit(-1);
+   }
+ 
+@@ -3696,7 +3698,7 @@
+   for(int i = 0; i < num; i++, itr1++, itr2++) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+       if(kVerbose > 0)
+-        G4cout << "merged dose distribution [" << i << "]" << G4endl;
++        G4cout << "merged dose distribution [" << i << "]" << G4endl;
+     *itr1 += *itr2;
+   }
+ 
+@@ -3858,7 +3860,7 @@
+   return kStepColors;
+ }
+ void G4GMocrenIO::copyTracks(std::vector<float *> & _tracks,
+-                               std::vector<unsigned char *> & _colors) {
++                               std::vector<unsigned char *> & _colors) {
+   std::vector<float *>::iterator titr;
+   for(titr = kSteps.begin(); titr != kSteps.end(); titr++) {
+     float * pts = new float[6];
+@@ -3878,7 +3880,7 @@
+   }
+ }
+ void G4GMocrenIO::mergeTracks(std::vector<float *> & _tracks,
+-                                std::vector<unsigned char *> & _colors) {
++                                std::vector<unsigned char *> & _colors) {
+   std::vector<float *>::iterator titr;
+   for(titr = _tracks.begin(); titr != _tracks.end(); titr++) {
+     addTrack(*titr);
+@@ -3896,8 +3898,8 @@
+     for(; itr != _steps.end(); itr++) {
+       struct GMocrenTrack::Step step;
+       for(int i = 0; i < 3; i++) {
+-        step.startPoint[i] = (*itr)[i];
+-        step.endPoint[i] = (*itr)[i+3];
++        step.startPoint[i] = (*itr)[i];
++        step.endPoint[i] = (*itr)[i+3];
+       }
+       steps.push_back(step);
+     }
+@@ -3908,7 +3910,7 @@
+     
+ }
+ void G4GMocrenIO::getTrack(int _num, std::vector<float *> & _steps,
+-                             std::vector<unsigned char *> & _color) {
++                             std::vector<unsigned char *> & _color) {
+ 
+   if(_num > (int)kTracks.size()) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+@@ -3924,8 +3926,8 @@
+   for(int isteps = 0; isteps < nsteps; isteps++) {
+     float * stepPoints = new float[6];
+     kTracks[_num].getStep(stepPoints[0], stepPoints[1], stepPoints[2],
+-                          stepPoints[3], stepPoints[4], stepPoints[5],
+-                          isteps);
++                          stepPoints[3], stepPoints[4], stepPoints[5],
++                          isteps);
+     _steps.push_back(stepPoints);
+   }
+ }
+@@ -3945,16 +3947,16 @@
+   return (int)kDetectors.size();
+ }
+ void G4GMocrenIO::addDetector(std::string & _name,
+-                                std::vector<float *> & _det, 
+-                                unsigned char _color[3]) {
++                                std::vector<float *> & _det, 
++                                unsigned char _color[3]) {
+ 
+     std::vector<float *>::iterator itr = _det.begin();
+     std::vector<struct GMocrenDetector::Edge> edges;
+     for(; itr != _det.end(); itr++) {
+       struct GMocrenDetector::Edge edge;
+       for(int i = 0; i < 3; i++) {
+-        edge.startPoint[i] = (*itr)[i];
+-        edge.endPoint[i] = (*itr)[i+3];
++        edge.startPoint[i] = (*itr)[i];
++        edge.endPoint[i] = (*itr)[i+3];
+       }
+       edges.push_back(edge);
+     }
+@@ -3967,8 +3969,8 @@
+ }
+ 
+ void G4GMocrenIO::getDetector(int _num, std::vector<float *> & _edges,
+-                                std::vector<unsigned char *> & _color,
+-                                std::string & _detName) {
++                                std::vector<unsigned char *> & _color,
++                                std::string & _detName) {
+ 
+   if(_num > (int)kDetectors.size()) {
+     if (G4VisManager::GetVerbosity() >= G4VisManager::errors)
+@@ -3987,8 +3989,8 @@
+   for(int ne = 0; ne < nedges; ne++) {
+     float * edgePoints = new float[6];
+     kDetectors[_num].getEdge(edgePoints[0], edgePoints[1], edgePoints[2],
+-                             edgePoints[3], edgePoints[4], edgePoints[5],
+-                             ne);
++                             edgePoints[3], edgePoints[4], edgePoints[5],
++                             ne);
+     _edges.push_back(edgePoints);
+   }
+ }
