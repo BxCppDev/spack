@@ -1,5 +1,5 @@
---- source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:30:25.927852525 +0200
-+++ source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:27:53.703276416 +0200
+--- a/source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:30:25.927852525 +0200
++++ b/source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:27:53.703276416 +0200
 @@ -100,8 +100,8 @@
    if(!stat) {
      if (G4VisManager::GetVerbosity() >= G4VisManager::errors)

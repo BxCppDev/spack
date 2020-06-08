@@ -1,5 +1,5 @@
---- source/processes/hadronic/models/low_energy/src/G4LElastic.cc	2020-06-08 01:24:49.366578155 +0200
-+++ source/processes/hadronic/models/low_energy/src/G4LElastic.cc	2020-06-08 01:21:04.377724621 +0200
+--- a/source/processes/hadronic/models/low_energy/src/G4LElastic.cc	2020-06-08 01:24:49.366578155 +0200
++++ b/source/processes/hadronic/models/low_energy/src/G4LElastic.cc	2020-06-08 01:21:04.377724621 +0200
 @@ -290,7 +290,8 @@
       }
       catch(G4HadronicException)
