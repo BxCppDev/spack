@@ -34,7 +34,10 @@ class Camp(CMakePackage):
 
     version('0.8.4', sha256='4063f29c63ed0505f4045b0c8855c48c31233f392a441441c17a08579fc69c73')
 
-    patch('camp-0.8.4-fix-missing_boost_enable_if.patch', level=1, when='@0.8.4')
+    patch('camp-0.8.4-fix-missing_boost_enable_if.patch',
+          level=1,
+          when='@0.8.4',
+          sha256='f5162c3baea254dbafc18a142216c874a301a6e443e4ac68fdaf2818fcf366f4')
     
     depends_on('boost@1.69.0')
 
