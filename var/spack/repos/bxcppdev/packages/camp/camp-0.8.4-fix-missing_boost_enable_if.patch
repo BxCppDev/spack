@@ -1,0 +1,11 @@
+--- a/rawtype.hpp	2020-06-08 15:14:04.075159919 +0200
++++ b/rawtype.hpp	2020-06-08 15:14:44.491487390 +0200
+@@ -33,7 +33,7 @@
+ #ifndef CAMP_DETAIL_RAWTYPE_HPP
+ #define CAMP_DETAIL_RAWTYPE_HPP
+ 
+-
++#include <boost/utility/enable_if.hpp>
+ #include <camp/detail/issmartpointer.hpp>
+ 
+ 
