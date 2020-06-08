@@ -48,7 +48,7 @@ class Bayeux(CMakePackage):
     depends_on('cmake@3.10.2:', type='build')
     depends_on('boost@1.69.0:')
     depends_on('gsl@2.4:')
-    depends_on('camp@0.8:')
+    depends_on('camp@0.8.4:')
     depends_on('clhep@2.1.3.1:')
     depends_on('xerces-c')
     depends_on('root@6.12.04:6.16.00')
