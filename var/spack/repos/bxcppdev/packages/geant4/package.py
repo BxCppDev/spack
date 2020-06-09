@@ -106,8 +106,8 @@ class Geant4(CMakePackage):
           level=1, when='@10.4.3 cxxstd=17')
     patch('geant4-9.6.4-1.patch', level=1, when='@9.6.4',
           sha256='8ce94a4b3a8108435737a1bbf296fcf4a9a8befbf30074ba62fe248079351448')
-    patch('geant4-9.6.4-2.patch', level=1, when='@9.6.4',
-          sha256='c8d232b0fc6f978115d7bb2a5f803b1dadea5fd97103ae60866a4dbb7af11bff')
+#    patch('geant4-9.6.4-2.patch', level=1, when='@9.6.4',
+#          sha256='c8d232b0fc6f978115d7bb2a5f803b1dadea5fd97103ae60866a4dbb7af11bff')
 
     def url_for_version(self, version):
         """Handle version string."""
