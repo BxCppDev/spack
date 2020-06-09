@@ -35,9 +35,10 @@ class Bayeux(CMakePackage):
     version('3.4.1', sha256='94785ec23c77e5b4785d39cb6a6f94fa9f0229989778bdf688ef43b7a4fead8a')
     version('develop', git='https://github.com/BxCppDev/Bayeux.git', branch='develop')
 
+    _cxxstd_values = ('11', '14', '17')
     variant('cxxstd',
-            default='11',
-            values=('11', '14', '17'),
+            default=_cxxstd_values[0],
+            values=_cxxstd_values,
             multi=False,
             description='Use the specified C++ standard when building.')
     variant('docs', default=False)
@@ -49,14 +50,15 @@ class Bayeux(CMakePackage):
     depends_on('boost@1.69.0:')
     depends_on('gsl@2.4:')
     depends_on('camp@0.8.4:')
-    depends_on('clhep@2.1.3.1:')
-    depends_on('xerces-c')
-    depends_on('root@6.12.04:6.16.00')
+    for std in _cxxstd_values:
+        depends_on('clhep@2.1.3.1: cxxstd=' + std, when='cxxstd=' + std)
+        depends_on('xerces-c       cxxstd=' + std, when='cxxstd=' + std)
+        depends_on('geant4@9.6.4   cxxstd=' + std, when='+geant4 cxxstd=' + std)
+        depends_on('root@6.12.04:6.16.00  cxxstd=' + std, when='+geant4 cxxstd=' + std)
+        depends_on('bxdecay0@1.0:  cxxstd=' + std, when='@develop,3.4.2: +bxdecay0 cxxstd=' + std)
     depends_on('qt@5.:', when='+qt')
-    depends_on('bxdecay0@1.0:', when='@develop,3.4.2: +bxdecay0')
     depends_on('gnuplot@4:')
     depends_on('doxygen@1.8:', when='+docs')
-    depends_on('geant4@9.6.4', when='+geant4')
 
     def cmake_args(self):
         spec = self.spec
