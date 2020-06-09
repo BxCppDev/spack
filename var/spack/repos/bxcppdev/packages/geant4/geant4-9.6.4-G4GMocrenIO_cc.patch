@@ -1,0 +1,14 @@
+--- a/source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-08 01:30:25.927852525 +0200
++++ b/source/visualization/gMocren/src/G4GMocrenIO.cc	2020-06-09 10:40:36.052818819 +0200
+@@ -470,8 +470,9 @@
+   // output file open
+   std::ofstream ofile(kFileName.c_str(),
+ 		      std::ios_base::out|std::ios_base::binary);
+-  if(DEBUG || kVerbose > 0)
+-    G4cout << "         file open status: " << ofile << G4endl;
++  // FIX:
++  // if(DEBUG || kVerbose > 0)
++  //  G4cout << "         file open status: " << ofile << G4endl;
+   
+   // file identifier
+   ofile.write("gMocren ", 8);
