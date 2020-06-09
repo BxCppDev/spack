@@ -52,9 +52,9 @@ class Bayeux(CMakePackage):
     depends_on('camp@0.8.4:')
     for std in _cxxstd_values:
         depends_on('clhep@2.1.3.1: cxxstd=' + std, when='cxxstd=' + std)
-        depends_on('xerces-c       cxxstd=' + std, when='cxxstd=' + std)
+        depends_on('xerces-c@3     cxxstd=' + std, when='cxxstd=' + std)
         depends_on('geant4@9.6.4   cxxstd=' + std, when='+geant4 cxxstd=' + std)
-        depends_on('root@6.12.04:6.16.00  cxxstd=' + std, when='+geant4 cxxstd=' + std)
+        depends_on('root@6.12.04:6.16.00  cxxstd=' + std, when='cxxstd=' + std)
         depends_on('bxdecay0@1.0:  cxxstd=' + std, when='@develop,3.4.2: +bxdecay0 cxxstd=' + std)
     depends_on('qt@5.:', when='+qt')
     depends_on('gnuplot@4:')
