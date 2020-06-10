@@ -1113,9 +1113,17 @@ class Spec(object):
     def _add_dependency(self, spec, deptypes):
         """Called by the parser to add another spec as a dependency."""
         if spec.name in self._dependencies:
+            print("error: name=", self.name)
+            print("error: deps=", self._dependencies)
+            print("error: spec=", spec)
             raise DuplicateDependencyError(
-                "Cannot depend on '%s' twice" % spec)
-
+                "Cannot depend on '%s' twice" % (spec))
+        # else:
+        #     print("trace: _add_dependency:")
+        #     print("trace:   name=", self.name)
+        #     print("trace:   deps=", self._dependencies)
+        #     print("trace:   spec=", spec)
+           
         # create an edge and add to parent and child
         dspec = DependencySpec(self, spec, deptypes)
         self._dependencies[spec.name] = dspec
