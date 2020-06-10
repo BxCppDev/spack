@@ -42,6 +42,7 @@ class Bayeux(CMakePackage):
             multi=False,
             description='Use the specified C++ standard when building.')
     variant('docs', default=False)
+    variant('system-doxygen', default=False)
     variant('qt', default=False)
     variant('bxdecay0', default=False)
     variant('geant4', default=False)
@@ -51,21 +52,17 @@ class Bayeux(CMakePackage):
     depends_on('gsl@2.4:')
     depends_on('camp@0.8.4:')
     # for std in _cxxstd_values:
-    #     depends_on('clhep@2.1.3.1: cxxstd=' + std, when='cxxstd=' + std)
-    #     depends_on('xerces-c@3     cxxstd=' + std, when='cxxstd=' + std)
-    #     depends_on('geant4@9.6.4   cxxstd=' + std, when='+geant4 cxxstd=' + std)
-    #     depends_on('root@6.12.04:6.16.00  cxxstd=' + std, when='cxxstd=' + std)
-    #     depends_on('bxdecay0@1.0:  cxxstd=' + std, when='@develop,3.4.2: +bxdecay0 cxxstd=' + std)
-    for std in _cxxstd_values:
-        depends_on('xerces-c@3     cxxstd=' + std, when='cxxstd=' + std)
+    #     depends_on('xerces-c@3.0.0:   cxxstd=' + std, when='cxxstd=' + std)
+    depends_on('xerces-c@3.0.0:')
     depends_on('clhep@2.1.3.1:')
-    depends_on('geant4@9.6.4', when='+geant4')
     depends_on('root@6.12.04:6.16.00')
-    depends_on('bxdecay0@1.0:', when='@develop,3.4.2: +bxdecay0')
-    depends_on('qt@5.:', when='+qt')
-    depends_on('gnuplot@4:')
-    depends_on('doxygen@1.8:', when='+docs')
+    depends_on('bxdecay0@1.0.0:', when='@develop,3.4.2: +bxdecay0')
+    depends_on('gnuplot@4.0:')
+    depends_on('doxygen@1.8:', when='+docs ~system-doxygen')
+    depends_on('qt@5.2.0:', when='+qt')
+    depends_on('geant4@9.6.4', when='+geant4')
 
+    
     def cmake_args(self):
         spec = self.spec
         args = ['-DCMAKE_CXX_STANDARD={0}'.format(self.spec.variants['cxxstd'].value)]
